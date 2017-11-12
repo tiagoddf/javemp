@@ -37,8 +37,7 @@ public class ConnectMYSQL {
         }
      }
           public void desconecta(){
-       try {        
-           JOptionPane.showMessageDialog(null, "desconectado ao banco de dados com sucesso"); 
+       try {         
            con.close();      
        } catch (SQLException ex) {
            
