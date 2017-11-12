@@ -1,8 +1,7 @@
 
-package Dao;
+package Funcionarios;
 
-import Beans.beansUsuario;
-import conexaoBD.ConnectMYSQL;
+import DB.ConnectMYSQL;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -10,12 +9,12 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
-public class daoUsu {
+public class daoFuncionarios {
     
     ConnectMYSQL conex = new ConnectMYSQL();
-    beansUsuario mod = new beansUsuario();
+    beansFuncionarios mod = new beansFuncionarios();
     
-    public void Salvar(beansUsuario mod){
+    public void Salvar(beansFuncionarios mod){
         conex.conectar();
         
         try {
@@ -33,7 +32,7 @@ public class daoUsu {
         
     }
     
-    public void excluir(beansUsuario mod){
+    public void excluir(beansFuncionarios mod){
         conex.conectar();
         try {
             PreparedStatement pst = conex.con.prepareStatement("delete from funcionarios where id=?");
@@ -42,7 +41,7 @@ public class daoUsu {
              JOptionPane.showMessageDialog(null, "Dados excluidos com sucessos");
             
         } catch (SQLException ex) {
-            Logger.getLogger(daoUsu.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(daoFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
              JOptionPane.showMessageDialog(null, "Erro ao excluir dados/nErro:" +ex);
         }
         
@@ -50,7 +49,7 @@ public class daoUsu {
         
     }
     
-    public void editar(beansUsuario mod){
+    public void editar(beansFuncionarios mod){
       conex.conectar();
         try {
             PreparedStatement pst = conex.con.prepareStatement("update funcionarios set usuario=?, senha=?, tipo=? where id=?"); //alteração
