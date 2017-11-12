@@ -26,7 +26,7 @@ public class ConnectMYSQL {
             System.out.println("Conectando ao banco...");
               try {
                 Class.forName("com.mysql.jdbc.Driver");
-                con =  DriverManager.getConnection("jdbc:mysql://localhost/empresa","root","");
+                con =  DriverManager.getConnection("jdbc:mysql://localhost/empresa","luiztiago","suDX7YMHsFPyCMOW");
                 System.out.println("Conectado.");
         } catch (ClassNotFoundException ex) {
                 System.out.println("Classe não encontrada, adicione o driver nas bibliotecas.");
