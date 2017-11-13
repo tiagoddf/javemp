@@ -6,9 +6,9 @@
 package Funcionarios;
 
 import DB.ConnectMYSQL;
-import Funcionarios.beansUsuario;
+import Funcionarios.beansFuncionarios;
 import Beans.modeloTabela;
-import Funcionarios.daoUsuario;
+import Funcionarios.daoFuncionarios;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -18,17 +18,17 @@ import javax.swing.ListSelectionModel;
  *
  * @author luiz
  */
-public class formUsuario extends javax.swing.JFrame {
+public class formFuncionarios extends javax.swing.JFrame {
 
     
-        beansUsuario mod = new beansUsuario();
-        daoUsuario control = new daoUsuario();
+        beansFuncionarios mod = new beansFuncionarios();
+        daoFuncionarios control = new daoFuncionarios();
         ConnectMYSQL conex = new ConnectMYSQL();
         int flag;
     /**
      * Creates new form formUsuario
      */
-    public formUsuario() {
+    public formFuncionarios() {
         initComponents();
         preencherTabela("select *from funcionarios order by usuario");
         
@@ -486,14 +486,18 @@ public class formUsuario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(formUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formFuncionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(formUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formFuncionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(formUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formFuncionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(formUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formFuncionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -502,7 +506,7 @@ public class formUsuario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new formUsuario().setVisible(true);
+                new formFuncionarios().setVisible(true);
             }
         });
     }

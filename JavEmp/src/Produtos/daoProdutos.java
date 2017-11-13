@@ -5,7 +5,6 @@
  */
 package Produtos;
 
-import Funcionarios.beansFuncionarios;
 import DB.ConnectMYSQL;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -19,13 +18,13 @@ import javax.swing.JOptionPane;
 */
 public class daoProdutos {
     ConnectMYSQL conex = new ConnectMYSQL();
-    beansFuncionarios mod = new beansFuncionarios();
+    beansProdutos mod = new beansProdutos();
     
-    public void Salvar(beansFuncionarios mod) {
+    public void Salvar(beansProdutos mod) {
         conex.conectar();
         try {
-            PreparedStatement pst = conex.con.prepareStatement("insert into produtos(nome,tipo ) values(?,?)");
-            pst.setString(1, mod.getUsuario());
+            PreparedStatement pst = conex.con.prepareStatement("insert into produtos(nome,tipo) values(?,?)");
+            pst.setString(1, mod.getNome());
             pst.setString(2, mod.getTipo());
             pst.execute();
             JOptionPane.showMessageDialog(null, "Dados inseridos com sucesso");

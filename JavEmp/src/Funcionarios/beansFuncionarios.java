@@ -9,7 +9,7 @@ package Funcionarios;
  *
  * @author luiz
  */
-public class beansUsuario {
+public class beansFuncionarios {
     
     
     private int id;
