@@ -78,6 +78,11 @@ public class formFuncionarios extends javax.swing.JFrame {
         jComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Funcionario", " " }));
         jComboBox.setEnabled(false);
+        jComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxActionPerformed(evt);
+            }
+        });
 
         jTableUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -359,6 +364,7 @@ public class formFuncionarios extends javax.swing.JFrame {
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
      habilitarBotoes();
      liberarCampos();
+     limparCampos();
      flag =1;
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
@@ -395,7 +401,7 @@ public class formFuncionarios extends javax.swing.JFrame {
                 desabilitarBotoes();
                 bloquearCampos();
                 
-                jButtonNovo.setEnabled(false);
+                jButtonNovo.setEnabled(true);
                 jButtonCancelar.setEnabled(true);
                 jButtonEditar.setEnabled(true);
                 jButtonExcluir.setEnabled(true);
@@ -440,6 +446,10 @@ public class formFuncionarios extends javax.swing.JFrame {
         control.buscar(mod);
         preencherTabela("select *from funcionarios where usuario like'%" + mod.getPesquisa()+ "%'");
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
+
+    private void jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxActionPerformed
       public void preencherTabela(String Sql){
           ArrayList dados = new ArrayList();
           String [] colunas = new String []{"ID","Usuario","Senha","Tipo"};

@@ -18,14 +18,16 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
     
     ConnectMYSQL con = new ConnectMYSQL(); 
-    Home home = new Home();
-
+    
     /**
      * Creates new form visaoLogin
      */
     public Login() {
         initComponents();
     }
+    
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -110,12 +112,14 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+       
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
        con.conectar();
         try {
             con.executaSql("select *from funcionarios where usuario='"+jTextFieldNome.getText()+"'");
             con.rs.first();
             if(con.rs.getString("senha").equals(jPasswordFieldSenha.getText())){
+                Home home = new Home(jTextFieldNome.getText());
                 home.setVisible(true);
                 dispose();
             }else{
