@@ -129,7 +129,7 @@ public class telaLogin extends javax.swing.JFrame {
             con.executaSql("select *from funcionarios where usuario='"+jTextFieldNome.getText()+"'");
             con.rs.first();
             if(con.rs.getString("senha").equals(jPasswordFieldSenha.getText())){
-                Home home = new Home(jTextFieldNome.getText());
+                telaHome home = new telaHome(jTextFieldNome.getText());
                 home.setVisible(true);
                 dispose();
             }else{
