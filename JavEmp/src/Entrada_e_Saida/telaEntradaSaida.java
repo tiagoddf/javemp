@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tela;
+package Entrada_e_Saida;
 
 /**
  *
@@ -63,7 +63,7 @@ public class telaEntradaSaida extends javax.swing.JFrame {
                 {"rbaldan", "3062", "Ruggeri Henrique Baldan", "TI", "11:00 - Saída Almoço"}
             },
             new String [] {
-                "Usuario/Email", "Ramal", "Nome", "Setor", "Movimento"
+                "Usuario/Email", "Ramal", "Nome Completo", "Setor", "Movimento"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

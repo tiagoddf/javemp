@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tela;
+package Logando;
 
 import DB.ConnectMYSQL;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import tela.telaHome;
 
 /**
  *
@@ -129,7 +130,7 @@ public class telaLogin extends javax.swing.JFrame {
             con.executaSql("select *from funcionarios where usuario='"+jTextFieldNome.getText()+"'");
             con.rs.first();
             if(con.rs.getString("senha").equals(jPasswordFieldSenha.getText())){
-                Home home = new Home(jTextFieldNome.getText());
+                telaHome home = new telaHome(jTextFieldNome.getText());
                 home.setVisible(true);
                 dispose();
             }else{
