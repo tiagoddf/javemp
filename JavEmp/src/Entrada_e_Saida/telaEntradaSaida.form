@@ -208,7 +208,7 @@
                   <Data value="3061"/>
                   <Data value="3062"/>
                 </Column>
-                <Column editable="true" title="Nome" type="java.lang.Object">
+                <Column editable="true" title="Nome Completo" type="java.lang.Object">
                   <Data value="Tiago Duarte"/>
                   <Data value="Luiz Felipe Rodrigues"/>
                   <Data value="Ruggeri Henrique Baldan"/>

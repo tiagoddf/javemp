@@ -13,6 +13,11 @@ public class beansProdutos {
     private int id;
     private String nome;
     private String tipo;
+    private int estoque;
+    private double valor;
+    private String pesquisa;
+    private String tipoPesquisa;
+    
 
     /**
      * @return the id
@@ -54,6 +59,48 @@ public class beansProdutos {
      */
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    /**
+     * @return the estoque
+     */
+    public int getEstoque() {
+        return estoque;
+    }
+
+    /**
+     * @param estoque the estoque to set
+     */
+    public void setEstoque(int estoque) {
+        this.estoque = estoque;
+    }
+
+    /**
+     * @return the valor
+     */
+    public double getValor() {
+        return valor;
+    }
+
+    /**
+     * @param valor the valor to set
+     */
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
+    /**
+     * @return the pesquisa
+     */
+    public String getPesquisa() {
+        return pesquisa;
+    }
+
+    /**
+     * @param pesquisa the pesquisa to set
+     */
+    public void setPesquisa(String pesquisa) {
+        this.pesquisa = pesquisa;
     }
     
     

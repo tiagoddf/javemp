@@ -6,7 +6,7 @@
 package tela;
 
 import DB.ConnectMYSQL;
-import Funcionarios.formFuncionarios;
+import Funcionarios.telaGerenciarFuncionarios;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,13 +56,17 @@ public class telaHome extends javax.swing.JFrame {
         jLabelUsuario = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuAdmin = new javax.swing.JMenu();
         jMenuItem_CriarUsuario = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,6 +93,9 @@ public class telaHome extends javax.swing.JFrame {
 
         jMenu1.setText("Arquivo");
 
+        jMenuItem6.setText("Alterar Senha");
+        jMenu1.add(jMenuItem6);
+
         jMenuItem3.setText("Sair");
         jMenu1.add(jMenuItem3);
 
@@ -102,6 +109,9 @@ public class telaHome extends javax.swing.JFrame {
         jMenuItem2.setText("Entrade e saída");
         jMenu2.add(jMenuItem2);
 
+        jMenuItem4.setText("Tirar Pedido");
+        jMenu2.add(jMenuItem4);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Janelas");
@@ -109,13 +119,19 @@ public class telaHome extends javax.swing.JFrame {
 
         jMenuAdmin.setText("Admin");
 
-        jMenuItem_CriarUsuario.setText("Criar Usuario");
+        jMenuItem_CriarUsuario.setText("Gerenciar Funcionarios");
         jMenuItem_CriarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem_CriarUsuarioActionPerformed(evt);
             }
         });
         jMenuAdmin.add(jMenuItem_CriarUsuario);
+
+        jMenuItem5.setText("Gerenciar Produtos");
+        jMenuAdmin.add(jMenuItem5);
+
+        jMenuItem7.setText("Logs Movimentação");
+        jMenuAdmin.add(jMenuItem7);
 
         jMenuBar1.add(jMenuAdmin);
 
@@ -143,7 +159,7 @@ public class telaHome extends javax.swing.JFrame {
             conex.executaSql("select *from funcionarios where usuario ='"+jLabelUsuario.getText()+"'");
             conex.rs.first();
             if(conex.rs.getString("tipo").equals("Administrador")){
-                formFuncionarios criarFunc = new formFuncionarios();
+                telaGerenciarFuncionarios criarFunc = new telaGerenciarFuncionarios();
                 criarFunc.setVisible(true);
                 
             }else{
@@ -200,6 +216,10 @@ public class telaHome extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem_CriarUsuario;
     // End of variables declaration//GEN-END:variables
 }

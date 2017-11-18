@@ -9,6 +9,11 @@
             <Property name="text" type="java.lang.String" value="Arquivo"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Alterar Senha"/>
+              </Properties>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sair"/>
@@ -31,6 +36,11 @@
                 <Property name="text" type="java.lang.String" value="Entrade e sa&#xed;da"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Tirar Pedido"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu3">
@@ -45,11 +55,21 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_CriarUsuario">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Criar Usuario"/>
+                <Property name="text" type="java.lang.String" value="Gerenciar Funcionarios"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_CriarUsuarioActionPerformed"/>
               </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Gerenciar Produtos"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Logs Movimenta&#xe7;&#xe3;o"/>
+              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
