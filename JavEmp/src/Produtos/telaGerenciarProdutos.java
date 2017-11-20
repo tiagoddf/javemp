@@ -10,6 +10,8 @@ import DB.ConnectMYSQL;
 import Funcionarios.modeloTabela;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 
@@ -195,7 +197,7 @@ public class telaGerenciarProdutos extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxTipoDoProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hidráulicos", "Ferragens e Ferramentas", "Tubos", "Fabricantes", "Tintas e Abrasivos", "Ferramentas Manuais", "Material Elétrico" }));
+        jComboBoxTipoDoProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Hidráulicos", "Ferragens e Ferramentas", "Tubos", "Fabricantes", "Tintas e Abrasivos", "Ferramentas Manuais", "Material Elétrico" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -303,7 +305,11 @@ public class telaGerenciarProdutos extends javax.swing.JFrame {
         mod.setPesquisa(jTextFieldPesquisar.getText());   
         mod.setTipoPesquisa((String) jComboBoxTipoDoProduto.getSelectedItem());
         control.buscar(mod);
-        preencherTabela("select *from produtos where nome like'%"+ mod.getPesquisa()+"%'");
+        if(jComboBoxTipoDoProduto.getSelectedItem() == "Todos"){
+            preencherTabela("select *from produtos where nome like'%" + mod.getPesquisa()+ "%'");
+        }else{
+            preencherTabela("select *from produtos where nome like'%" + mod.getPesquisa()+ "%'"+"and tipo like'"+mod.getTipoPesquisa()+"'");
+        }
     }//GEN-LAST:event_jTextFieldPesquisarActionPerformed
 
     private void jTextFieldNomeProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldNomeProdutoMouseClicked

@@ -268,14 +268,15 @@
     <Component class="javax.swing.JComboBox" name="jComboBoxTipoDoProduto">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="7">
-            <StringItem index="0" value="Hidr&#xe1;ulicos"/>
-            <StringItem index="1" value="Ferragens e Ferramentas"/>
-            <StringItem index="2" value="Tubos"/>
-            <StringItem index="3" value="Fabricantes"/>
-            <StringItem index="4" value="Tintas e Abrasivos"/>
-            <StringItem index="5" value="Ferramentas Manuais"/>
-            <StringItem index="6" value="Material El&#xe9;trico"/>
+          <StringArray count="8">
+            <StringItem index="0" value="Todos"/>
+            <StringItem index="1" value="Hidr&#xe1;ulicos"/>
+            <StringItem index="2" value="Ferragens e Ferramentas"/>
+            <StringItem index="3" value="Tubos"/>
+            <StringItem index="4" value="Fabricantes"/>
+            <StringItem index="5" value="Tintas e Abrasivos"/>
+            <StringItem index="6" value="Ferramentas Manuais"/>
+            <StringItem index="7" value="Material El&#xe9;trico"/>
           </StringArray>
         </Property>
       </Properties>
