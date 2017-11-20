@@ -81,7 +81,7 @@ public class daoProdutos {
         conex.conectar(); 
         try {  
             // preencherTabela("select *from funcionarios order by usuario");
-            conex.executaSql("select *from produtos where nome like'%" + mod.getPesquisa()+"%'");
+            conex.executaSql("select *from produtos where nome like'%"+ mod.getPesquisa()+"%'");
             conex.rs.first();
             mod.setId(conex.rs.getInt("id"));
             mod.setNome(conex.rs.getString("nome"));

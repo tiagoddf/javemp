@@ -55,9 +55,20 @@ public class telaGerenciarClientes extends javax.swing.JFrame {
 
         jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
 
+        jTextFieldNome.setText("Nome");
+        jTextFieldNome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldNomeMouseClicked(evt);
+            }
+        });
         jTextFieldNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldNomeActionPerformed(evt);
+            }
+        });
+        jTextFieldNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldNomeKeyPressed(evt);
             }
         });
 
@@ -230,7 +241,10 @@ public class telaGerenciarClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jTableClienteMouseClicked
 
     private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
-        // TODO add your handling code here:
+        
+        
+        
+        
     }//GEN-LAST:event_jTextFieldNomeActionPerformed
 
     private void jButtonDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeletarActionPerformed
@@ -248,6 +262,18 @@ public class telaGerenciarClientes extends javax.swing.JFrame {
         control.buscar(mod);
         preencherTabela("select *from clientes where nome like'%" + mod.getPesquisa()+ "%'");
     }//GEN-LAST:event_jTextFieldPesquisarActionPerformed
+
+    private void jTextFieldNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldNomeMouseClicked
+        if(jTextFieldNome.getText().equals("Nome")){
+            jTextFieldNome.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldNomeMouseClicked
+
+    private void jTextFieldNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomeKeyPressed
+       if(jTextFieldNome.getText().equals("Nome")){
+           jTextFieldNome.setText("");
+       }   
+    }//GEN-LAST:event_jTextFieldNomeKeyPressed
         public void preencherTabela(String Sql){
           ArrayList dados = new ArrayList();
           String [] colunas = new String []{"ID","Nome","Saldo"};

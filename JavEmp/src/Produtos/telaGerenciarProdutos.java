@@ -75,9 +75,47 @@ public class telaGerenciarProdutos extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldNomeProduto.setText("Nome do Produto");
+        jTextFieldNomeProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldNomeProdutoMouseClicked(evt);
+            }
+        });
         jTextFieldNomeProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldNomeProdutoActionPerformed(evt);
+            }
+        });
+        jTextFieldNomeProduto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldNomeProdutoKeyPressed(evt);
+            }
+        });
+
+        jTextFieldValor.setText("R$");
+        jTextFieldValor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldValorMouseClicked(evt);
+            }
+        });
+        jTextFieldValor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldValorKeyPressed(evt);
+            }
+        });
+
+        jTextFieldEstoque.setText("Quant.");
+        jTextFieldEstoque.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldEstoqueMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jTextFieldEstoqueMouseEntered(evt);
+            }
+        });
+        jTextFieldEstoque.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldEstoqueKeyPressed(evt);
             }
         });
 
@@ -223,7 +261,7 @@ public class telaGerenciarProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEnviarActionPerformed
 
     private void jTextFieldNomeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeProdutoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jTextFieldNomeProdutoActionPerformed
 
     private void jTableProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProdutosMouseClicked
@@ -263,9 +301,50 @@ public class telaGerenciarProdutos extends javax.swing.JFrame {
 
     private void jTextFieldPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarActionPerformed
         mod.setPesquisa(jTextFieldPesquisar.getText());   
+        mod.setTipoPesquisa((String) jComboBoxTipoDoProduto.getSelectedItem());
         control.buscar(mod);
-        preencherTabela("select *from produtos where nome like'%" + mod.getPesquisa()+ "%'");
+        preencherTabela("select *from produtos where nome like'%"+ mod.getPesquisa()+"%'");
     }//GEN-LAST:event_jTextFieldPesquisarActionPerformed
+
+    private void jTextFieldNomeProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldNomeProdutoMouseClicked
+              if(jTextFieldNomeProduto.getText().equals("Nome do Produto")){
+           jTextFieldNomeProduto.setText("");
+       }         
+    }//GEN-LAST:event_jTextFieldNomeProdutoMouseClicked
+
+    private void jTextFieldNomeProdutoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomeProdutoKeyPressed
+              if(jTextFieldNomeProduto.getText().equals("Nome do Produto")){
+           jTextFieldNomeProduto.setText("");
+       }   
+    }//GEN-LAST:event_jTextFieldNomeProdutoKeyPressed
+
+    private void jTextFieldValorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldValorMouseClicked
+              if(jTextFieldValor.getText().equals("R$")){
+           jTextFieldValor.setText("");
+       }         
+    }//GEN-LAST:event_jTextFieldValorMouseClicked
+
+    private void jTextFieldValorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldValorKeyPressed
+              if(jTextFieldValor.getText().equals("R$")){
+           jTextFieldValor.setText("");
+       }         
+    }//GEN-LAST:event_jTextFieldValorKeyPressed
+
+    private void jTextFieldEstoqueMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldEstoqueMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldEstoqueMouseEntered
+
+    private void jTextFieldEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldEstoqueMouseClicked
+          if(jTextFieldEstoque.getText().equals("Quant.")){
+           jTextFieldEstoque.setText("");
+       }         
+    }//GEN-LAST:event_jTextFieldEstoqueMouseClicked
+
+    private void jTextFieldEstoqueKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldEstoqueKeyPressed
+          if(jTextFieldEstoque.getText().equals("Quant.")){
+           jTextFieldEstoque.setText("");
+       }         
+    }//GEN-LAST:event_jTextFieldEstoqueKeyPressed
 
      public void preencherTabela(String Sql){
           ArrayList dados = new ArrayList();

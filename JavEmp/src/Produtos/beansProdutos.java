@@ -102,6 +102,20 @@ public class beansProdutos {
     public void setPesquisa(String pesquisa) {
         this.pesquisa = pesquisa;
     }
+
+    /**
+     * @return the tipoPesquisa
+     */
+    public String getTipoPesquisa() {
+        return tipoPesquisa;
+    }
+
+    /**
+     * @param tipoPesquisa the tipoPesquisa to set
+     */
+    public void setTipoPesquisa(String tipoPesquisa) {
+        this.tipoPesquisa = tipoPesquisa;
+    }
     
     
 }

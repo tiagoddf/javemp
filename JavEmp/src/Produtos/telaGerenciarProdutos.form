@@ -163,13 +163,33 @@
           </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldNomeProduto">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nome do Produto"/>
+          </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTextFieldNomeProdutoMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNomeProdutoActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldNomeProdutoKeyPressed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldValor">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="R$"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTextFieldValorMouseClicked"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldValorKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldEstoque">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Quant."/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTextFieldEstoqueMouseClicked"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTextFieldEstoqueMouseEntered"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldEstoqueKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonDeletar">
           <Properties>

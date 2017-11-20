@@ -68,7 +68,6 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
 
         jComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Funcionario", " " }));
-        jComboBox.setEnabled(false);
         jComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxActionPerformed(evt);
@@ -95,15 +94,42 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
 
         jTextFieldSenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextFieldSenha.setText("Senha");
-        jTextFieldSenha.setEnabled(false);
+        jTextFieldSenha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldSenhaMouseClicked(evt);
+            }
+        });
+        jTextFieldSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldSenhaKeyPressed(evt);
+            }
+        });
 
         jTextFieldNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextFieldNome.setText("Usuário");
-        jTextFieldNome.setEnabled(false);
+        jTextFieldNome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldNomeMouseClicked(evt);
+            }
+        });
+        jTextFieldNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldNomeKeyPressed(evt);
+            }
+        });
 
         jTextFieldSenha2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextFieldSenha2.setText("Confirmar Senha");
-        jTextFieldSenha2.setEnabled(false);
+        jTextFieldSenha2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldSenha2MouseClicked(evt);
+            }
+        });
+        jTextFieldSenha2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldSenha2KeyPressed(evt);
+            }
+        });
 
         jButtonPesquisar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonPesquisar.setText("pesquisar");
@@ -167,8 +193,10 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
         });
 
         jTextField1.setText("Nome Completo");
+        jTextField1.setEnabled(false);
 
         jTextField2.setText("Ramal");
+        jTextField2.setEnabled(false);
 
         jLabel2.setText("AVATAR");
 
@@ -437,6 +465,42 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
     private void jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxActionPerformed
+
+    private void jTextFieldNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldNomeMouseClicked
+           if(jTextFieldNome.getText().equals("Usuário")){
+            jTextFieldNome.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldNomeMouseClicked
+
+    private void jTextFieldNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomeKeyPressed
+           if(jTextFieldNome.getText().equals("Usuário")){
+            jTextFieldNome.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldNomeKeyPressed
+
+    private void jTextFieldSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldSenhaMouseClicked
+           if(jTextFieldSenha.getText().equals("Senha")){
+            jTextFieldSenha.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldSenhaMouseClicked
+
+    private void jTextFieldSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSenhaKeyPressed
+           if(jTextFieldSenha.getText().equals("Senha")){
+            jTextFieldSenha.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldSenhaKeyPressed
+
+    private void jTextFieldSenha2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldSenha2MouseClicked
+           if(jTextFieldSenha2.getText().equals("Confirmar Senha")){
+            jTextFieldSenha2.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldSenha2MouseClicked
+
+    private void jTextFieldSenha2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSenha2KeyPressed
+            if(jTextFieldSenha2.getText().equals("Confirmar Senha")){
+              jTextFieldSenha2.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldSenha2KeyPressed
       public void preencherTabela(String Sql){
           ArrayList dados = new ArrayList();
           String [] colunas = new String []{"ID","Usuario","Senha","Tipo"};

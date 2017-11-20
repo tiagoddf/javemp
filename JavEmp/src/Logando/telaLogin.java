@@ -65,6 +65,17 @@ public class telaLogin extends javax.swing.JFrame {
         });
 
         jTextFieldNome.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jTextFieldNome.setText("Usuário");
+        jTextFieldNome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldNomeMouseClicked(evt);
+            }
+        });
+        jTextFieldNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldNomeKeyPressed(evt);
+            }
+        });
 
         jPasswordFieldSenha.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
@@ -141,6 +152,18 @@ public class telaLogin extends javax.swing.JFrame {
         }
         con.desconecta();
     }//GEN-LAST:event_jButtonLoginActionPerformed
+
+    private void jTextFieldNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldNomeMouseClicked
+      if(jTextFieldNome.getText().equals("Usuário")){
+           jTextFieldNome.setText("");
+       }          
+    }//GEN-LAST:event_jTextFieldNomeMouseClicked
+
+    private void jTextFieldNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomeKeyPressed
+       if(jTextFieldNome.getText().equals("Usuário")){
+           jTextFieldNome.setText("");
+       }  
+    }//GEN-LAST:event_jTextFieldNomeKeyPressed
 
     /**
      * @param args the command line arguments
