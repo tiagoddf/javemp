@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Funcionarios;
+package Pedidos;
 
+import Funcionarios.*;
 import Pedidos.telaTirarPedido;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
@@ -13,12 +14,12 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author luiz
  */
-public class modeloTabela extends AbstractTableModel {
+public class modeloTabelaCarrinho extends AbstractTableModel {
     
     private ArrayList linhas= null;
     private String [] colunas= null;
     
- public modeloTabela(ArrayList lin, String[] col){
+ public modeloTabelaCarrinho(ArrayList lin, String[] col){
      setLinhas(lin);
      setColunas(col);
  }
@@ -63,6 +64,9 @@ public class modeloTabela extends AbstractTableModel {
     public Object getValueAt(int numLin, int numCol){
         Object[] linha = (Object[])getLinhas().get(numLin);
         return linha[numCol];
+    }
+    public void addRow(telaTirarPedido p){
+        this.linhas.add(p);
     }
     
   

@@ -5,17 +5,37 @@
  */
 package Pedidos;
 
+import DB.ConnectMYSQL;
+import Funcionarios.modeloTabela;
+import Produtos.beansProdutos;
+import Produtos.daoProdutos;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+
 /**
  *
  * @author tduarte
  */
 public class telaTirarPedido extends javax.swing.JFrame {
 
-    /**
-     * Creates new form telaTirarPedido
-     */
+    beansProdutos modProdutos = new beansProdutos();
+    daoProdutos controlProdutos = new daoProdutos();
+    ConnectMYSQL conex = new ConnectMYSQL();
+    
+                String idProduto;
+                String nomeProduto;
+                String tipoProduto;
+                double valorProduto;
+                int    estoqueProduto;
+                int    quantidadeProduto;
+                int x  = 10;
     public telaTirarPedido() {
         initComponents();
+//        quantidadeProduto = Integer.parseInt(jTextFieldQuantidade.getText());
+        preencherTabelaProdutos("select *from produtos order by nome");
+        preencherTabelaCarrinho();
     }
 
     /**
@@ -37,19 +57,19 @@ public class telaTirarPedido extends javax.swing.JFrame {
         jTextFieldValorAtual = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableCarrinho = new javax.swing.JTable();
         jButtonRemover = new javax.swing.JButton();
         jButtonLimpar = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jTextField4 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jTableProdutos = new javax.swing.JTable();
+        jTextFieldPesquisarProduto = new javax.swing.JTextField();
+        jComboBoxTipodoProduto = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jTextField5 = new javax.swing.JTextField();
+        jTextFieldQuantidade = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -75,18 +95,18 @@ public class telaTirarPedido extends javax.swing.JFrame {
 
         jLabel5.setText("Valor Atual");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCarrinho.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Nome", "Tipo", "Quantidade", "Preço", "Data"
+
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableCarrinho);
 
         jButtonRemover.setText("Remover");
 
@@ -165,53 +185,79 @@ public class telaTirarPedido extends javax.swing.JFrame {
 
         jLabel6.setText("Nome do Produto");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTableProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "ID", "Nome", "Tipo", "Valor", "Estoque"
+
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jTableProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableProdutosMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTableProdutos);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hidráulicos", "Ferragens e Ferramentas", "Tubos", "Fabricantes", "Tintas e Abrasivos", "Ferramentas Manuais", "Material Elétrico" }));
+        jTextFieldPesquisarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldPesquisarProdutoActionPerformed(evt);
+            }
+        });
+
+        jComboBoxTipodoProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Hidráulicos", "Ferragens e Ferramentas", "Tubos", "Fabricantes", "Tintas e Abrasivos", "Ferramentas Manuais", "Material Elétrico" }));
 
         jLabel7.setText("Tipo");
 
         jButton1.setText("Adicionar ao Carrinho");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jTextField5.setText("Quantidade");
+        jTextFieldQuantidade.setText("Quantidade");
+        jTextFieldQuantidade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldQuantidadeMouseClicked(evt);
+            }
+        });
+        jTextFieldQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldQuantidadeKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(89, 89, 89)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(94, 94, 94)
                 .addComponent(jLabel7)
                 .addGap(47, 47, 47))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jTextFieldPesquisarProduto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxTipodoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jTextFieldQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,14 +268,14 @@ public class telaTirarPedido extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxTipodoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -271,6 +317,118 @@ public class telaTirarPedido extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldSaldoActionPerformed
 
+    private void jTextFieldQuantidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldQuantidadeMouseClicked
+        if(jTextFieldQuantidade.getText().equals("Quantidade")){
+            jTextFieldQuantidade.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldQuantidadeMouseClicked
+
+    private void jTextFieldQuantidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldQuantidadeKeyPressed
+        if(jTextFieldQuantidade.getText().equals("Quantidade")){
+            jTextFieldQuantidade.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldQuantidadeKeyPressed
+
+    private void jTextFieldPesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarProdutoActionPerformed
+        modProdutos.setPesquisa(jTextFieldPesquisarProduto.getText());   
+        modProdutos.setTipoPesquisa((String) jComboBoxTipodoProduto.getSelectedItem());
+        controlProdutos.buscar(modProdutos);
+        if(jComboBoxTipodoProduto.getSelectedItem() == "Todos"){
+            preencherTabelaProdutos("select *from produtos where nome like'%" + modProdutos.getPesquisa()+ "%'");
+        }else{
+            preencherTabelaProdutos("select *from produtos where nome like'%" + modProdutos.getPesquisa()+ "%'"+"and tipo like'"+modProdutos.getTipoPesquisa()+"'");
+        }           
+    }//GEN-LAST:event_jTextFieldPesquisarProdutoActionPerformed
+
+    private void jTableProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProdutosMouseClicked
+        String nome =""+jTableProdutos.getValueAt(jTableProdutos.getSelectedRow(), 1);
+         conex.conectar();
+        conex.executaSql("select *from produtos where nome='"+nome+"'");
+            try {
+               
+                conex.rs.first();
+                 idProduto      = String.valueOf(conex.rs.getInt("id"));
+                 nomeProduto    = (conex.rs.getString("nome"));
+                 tipoProduto    = (conex.rs.getString("tipo"));
+                 valorProduto   = (double) (conex.rs.getDouble("valor"));
+                 estoqueProduto = (conex.rs.getInt("estoque"));
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao selecionar os dados "+ex);
+            }
+        
+        conex.desconecta();
+        
+    }//GEN-LAST:event_jTableProdutosMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+
+        if(nomeProduto != ""){
+             if(jTextFieldQuantidade.getText().equals("Quantidade")){ 
+                       JOptionPane.showMessageDialog(null, nomeProduto);   
+                       JOptionPane.showMessageDialog(null, valorProduto);
+                               preencherTabelaCarrinho();
+        }else{
+                   quantidadeProduto = Integer.parseInt(jTextFieldQuantidade.getText());
+                   valorProduto = valorProduto * quantidadeProduto;
+                    JOptionPane.showMessageDialog(null, valorProduto);
+                            preencherTabelaCarrinho();
+ 
+        }
+      }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void preencherTabelaProdutos(String Sql){
+          ArrayList dados = new ArrayList();
+          String [] colunas = new String []{"ID","Nome","Tipo","Valor","Estoque"};
+          conex.conectar();
+          conex.executaSql(Sql);        
+          try{
+              conex.rs.first();
+              do{
+                  dados.add(new Object[]{conex.rs.getInt("id"),conex.rs.getString("nome"),conex.rs.getString("tipo"),conex.rs.getDouble("valor"),conex.rs.getInt("estoque")});
+              }while(conex.rs.next());
+          }catch(SQLException ex){
+              JOptionPane.showMessageDialog(null, "Erro ao preencher Arraylist"+ex); 
+          }
+          modeloTabela modelo = new modeloTabela(dados, colunas);
+          
+          jTableProdutos.setModel(modelo);
+          jTableProdutos.getColumnModel().getColumn(0).setPreferredWidth(43);
+          jTableProdutos.getColumnModel().getColumn(0).setResizable(false);
+          jTableProdutos.getColumnModel().getColumn(1).setPreferredWidth(121);
+          jTableProdutos.getColumnModel().getColumn(1).setResizable(false);
+          jTableProdutos.getColumnModel().getColumn(2).setPreferredWidth(90);
+          jTableProdutos.getColumnModel().getColumn(2).setResizable(false);
+          jTableProdutos.getColumnModel().getColumn(3).setPreferredWidth(85);
+          jTableProdutos.getColumnModel().getColumn(3).setResizable(false);
+          jTableProdutos.getColumnModel().getColumn(4).setPreferredWidth(85);
+          jTableProdutos.getColumnModel().getColumn(4).setResizable(false);
+          jTableProdutos.getTableHeader().setReorderingAllowed(false);
+          jTableProdutos.setAutoResizeMode(jTableProdutos.AUTO_RESIZE_OFF);
+          jTableProdutos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+          conex.desconecta();
+      }
+        public void preencherTabelaCarrinho(){
+          ArrayList dados = new ArrayList();
+          String [] colunas = new String []{"Nome","Tipo","Quantidade","Preço"};
+          dados.add(new Object[]{nomeProduto,tipoProduto,quantidadeProduto,valorProduto});
+          modeloTabela modelo = new modeloTabela(dados, colunas);
+          jTableCarrinho.setModel(modelo);
+          jTableCarrinho.getColumnModel().getColumn(0).setPreferredWidth(110);
+          jTableCarrinho.getColumnModel().getColumn(0).setResizable(false);
+          jTableCarrinho.getColumnModel().getColumn(1).setPreferredWidth(110);
+          jTableCarrinho.getColumnModel().getColumn(1).setResizable(false);
+          jTableCarrinho.getColumnModel().getColumn(2).setPreferredWidth(43);
+          jTableCarrinho.getColumnModel().getColumn(2).setResizable(false);
+          jTableCarrinho.getColumnModel().getColumn(3).setPreferredWidth(80);
+          jTableCarrinho.getColumnModel().getColumn(3).setResizable(false);
+          jTableCarrinho.getTableHeader().setReorderingAllowed(false);
+          jTableCarrinho.setAutoResizeMode(jTableCarrinho.AUTO_RESIZE_OFF);
+          jTableCarrinho.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+          conex.desconecta();
+       }
+    
     /**
      * @param args the command line arguments
      */
@@ -312,7 +470,7 @@ public class telaTirarPedido extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButtonRemover;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBoxTipodoProduto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -324,11 +482,11 @@ public class telaTirarPedido extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTable jTableCarrinho;
+    private javax.swing.JTable jTableProdutos;
     private javax.swing.JTextField jTextFieldNome;
+    private javax.swing.JTextField jTextFieldPesquisarProduto;
+    private javax.swing.JTextField jTextFieldQuantidade;
     private javax.swing.JTextField jTextFieldSaldo;
     private javax.swing.JTextField jTextFieldValorAtual;
     // End of variables declaration//GEN-END:variables
