@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 13-Nov-2017 às 23:17
+-- Generation Time: 22-Nov-2017 às 02:28
 -- Versão do servidor: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -30,7 +30,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `clientes` (
   `id` int(11) NOT NULL,
-  `nome` varchar(30) NOT NULL
+  `nome` varchar(50) NOT NULL,
+  `saldo` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -41,8 +42,8 @@ CREATE TABLE `clientes` (
 
 CREATE TABLE `funcionarios` (
   `id` int(11) NOT NULL,
-  `usuario` varchar(30) NOT NULL,
-  `senha` varchar(30) NOT NULL,
+  `usuario` varchar(50) NOT NULL,
+  `senha` varchar(50) NOT NULL,
   `tipo` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -53,10 +54,12 @@ CREATE TABLE `funcionarios` (
 --
 
 CREATE TABLE `produtos` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(30) NOT NULL,
-  `tipo` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int(10) NOT NULL,
+  `nome` varchar(50) NOT NULL,
+  `tipo` varchar(30) NOT NULL,
+  `valor` double NOT NULL,
+  `estoque` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -100,7 +103,7 @@ ALTER TABLE `funcionarios`
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
