@@ -62,6 +62,8 @@ public class telaHome extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuAdmin = new javax.swing.JMenu();
         jMenuItem_CriarUsuario = new javax.swing.JMenuItem();
@@ -111,6 +113,12 @@ public class telaHome extends javax.swing.JFrame {
 
         jMenuItem4.setText("Tirar Pedido");
         jMenu2.add(jMenuItem4);
+
+        jMenuItem8.setText("Alocação");
+        jMenu2.add(jMenuItem8);
+
+        jMenuItem9.setText("Controle de Material");
+        jMenu2.add(jMenuItem9);
 
         jMenuBar1.add(jMenu2);
 
@@ -220,6 +228,8 @@ public class telaHome extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jMenuItem_CriarUsuario;
     // End of variables declaration//GEN-END:variables
 }
