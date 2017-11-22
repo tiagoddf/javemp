@@ -10,7 +10,7 @@ public class beansCliente {
     
     private String nome;
     private int id;
-    private double saldo;
+    private double credito;
     private int desconto;
     private String pesquisa;
 
@@ -43,17 +43,17 @@ public class beansCliente {
     }
 
     /**
-     * @return the saldo
+     * @return the credito
      */
-    public double getSaldo() {
-        return saldo;
+    public double getCredito() {
+        return credito;
     }
 
     /**
-     * @param saldo the saldo to set
+     * @param credito the credito to set
      */
-    public void setSaldo( double saldo) {
-        this.saldo = saldo;
+    public void setCredito( double credito) {
+        this.credito = credito;
     }
 
     /**

@@ -43,7 +43,7 @@ public class telaGerenciarClientes extends javax.swing.JFrame {
         jTextFieldId = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jTextFieldSaldo = new javax.swing.JTextField();
+        jTextFieldCredito = new javax.swing.JTextField();
         jButtonDeletar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCliente = new javax.swing.JTable();
@@ -55,7 +55,7 @@ public class telaGerenciarClientes extends javax.swing.JFrame {
 
         jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
 
-        jTextFieldNome.setText("Nome");
+        jTextFieldNome.setText("Nome do Cliente");
         jTextFieldNome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextFieldNomeMouseClicked(evt);
@@ -74,12 +74,19 @@ public class telaGerenciarClientes extends javax.swing.JFrame {
 
         jTextFieldId.setEnabled(false);
 
-        jLabel2.setText("Saldo");
+        jLabel2.setText("Credito:");
 
         jButton1.setText("Enviar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jTextFieldCredito.setText("R$: 00,00");
+        jTextFieldCredito.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldCreditoMouseClicked(evt);
             }
         });
 
@@ -95,19 +102,20 @@ public class telaGerenciarClientes extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldNome, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextFieldCredito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -123,7 +131,7 @@ public class telaGerenciarClientes extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextFieldSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextFieldCredito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonDeletar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(36, 36, 36))
@@ -157,21 +165,16 @@ public class telaGerenciarClientes extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(163, 163, 163)
                 .addComponent(jLabel1)
-                .addGap(140, 140, 140))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jTextFieldPesquisar)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldPesquisar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -195,23 +198,23 @@ public class telaGerenciarClientes extends javax.swing.JFrame {
             if(flag == 1){
         
             mod.setNome(jTextFieldNome.getText());
-            mod.setSaldo(Double.parseDouble(jTextFieldSaldo.getText()));
+            mod.setCredito(Double.parseDouble(jTextFieldCredito.getText()));
             control.Salvar(mod);  
             preencherTabela("select *from clientes order by nome");
             
             jTextFieldNome.setText("");
             jTextFieldId.setText("");
-            jTextFieldSaldo.setText("");
+            jTextFieldCredito.setText("");
             }else{
                 
             mod.setNome(jTextFieldNome.getText());
-            mod.setSaldo(Double.parseDouble(jTextFieldSaldo.getText()));
+            mod.setCredito(Double.parseDouble(jTextFieldCredito.getText()));
             mod.setId(Integer.parseInt(jTextFieldId.getText()));
             control.editar(mod);
             
             jTextFieldNome.setText("");
             jTextFieldId.setText("");
-            jTextFieldSaldo.setText("");
+            jTextFieldCredito.setText("");
             
             preencherTabela("select *from clientes order by nome");
             
@@ -230,7 +233,7 @@ public class telaGerenciarClientes extends javax.swing.JFrame {
                 conex.rs.first();
                 jTextFieldId.setText(String.valueOf(conex.rs.getInt("id")));
                 jTextFieldNome.setText(conex.rs.getString("nome"));
-                jTextFieldSaldo.setText(String.valueOf(conex.rs.getDouble("saldo")));
+                jTextFieldCredito.setText(String.valueOf(conex.rs.getDouble("credito")));
 
 
             } catch (SQLException ex) {
@@ -264,25 +267,31 @@ public class telaGerenciarClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldPesquisarActionPerformed
 
     private void jTextFieldNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldNomeMouseClicked
-        if(jTextFieldNome.getText().equals("Nome")){
+        if(jTextFieldNome.getText().equals("Nome do Cliente")){
             jTextFieldNome.setText("");
         }
     }//GEN-LAST:event_jTextFieldNomeMouseClicked
 
     private void jTextFieldNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomeKeyPressed
-       if(jTextFieldNome.getText().equals("Nome")){
+       if(jTextFieldNome.getText().equals("Nome do Cliente")){
            jTextFieldNome.setText("");
        }   
     }//GEN-LAST:event_jTextFieldNomeKeyPressed
+
+    private void jTextFieldCreditoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldCreditoMouseClicked
+        if(jTextFieldCredito.getText().equals("R$: 00,00")){
+            jTextFieldCredito.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldCreditoMouseClicked
         public void preencherTabela(String Sql){
           ArrayList dados = new ArrayList();
-          String [] colunas = new String []{"ID","Nome","Saldo"};
+          String [] colunas = new String []{"ID","Nome","Credito"};
           conex.conectar();
           conex.executaSql(Sql);        
           try{
               conex.rs.first();
               do{
-                  dados.add(new Object[]{conex.rs.getInt("id"),conex.rs.getString("nome"),conex.rs.getDouble("saldo")});
+                  dados.add(new Object[]{conex.rs.getInt("id"),conex.rs.getString("nome"),conex.rs.getDouble("credito")});
               }while(conex.rs.next());
           }catch(SQLException ex){
               JOptionPane.showMessageDialog(null, "Erro ao preencher Arraylist"+ex); 
@@ -349,9 +358,9 @@ public class telaGerenciarClientes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableCliente;
+    private javax.swing.JTextField jTextFieldCredito;
     private javax.swing.JTextField jTextFieldId;
     private javax.swing.JTextField jTextFieldNome;
     private javax.swing.JTextField jTextFieldPesquisar;
-    private javax.swing.JTextField jTextFieldSaldo;
     // End of variables declaration//GEN-END:variables
 }

@@ -29,9 +29,9 @@ public class daoCliente {
         conex.conectar();
         
         try {
-            PreparedStatement pst = conex.con.prepareStatement("insert into clientes(nome,saldo) values(?,?)");
+            PreparedStatement pst = conex.con.prepareStatement("insert into clientes(nome,credito) values(?,?)");
             pst.setString(1, mod.getNome());
-            pst.setDouble(2, mod.getSaldo());
+            pst.setDouble(2, mod.getCredito());
             pst.execute();
             JOptionPane.showMessageDialog(null, "Dados inseridos com sucesso");
         } catch (SQLException ex) {
@@ -43,9 +43,9 @@ public class daoCliente {
          public void editar(beansCliente mod){
       conex.conectar();
         try {
-            PreparedStatement pst = conex.con.prepareStatement("update clientes set nome=?, saldo=? where id=?"); //alteração
+            PreparedStatement pst = conex.con.prepareStatement("update clientes set nome=?, credito=? where id=?"); //alteração
             pst.setString   (1, mod.getNome());
-            pst.setDouble   (2, mod.getSaldo());
+            pst.setDouble   (2, mod.getCredito());
             pst.setInt      (3, mod.getId());
             pst.execute();
             JOptionPane.showMessageDialog(null, "Dados alterados com sucessos");
@@ -82,7 +82,7 @@ public class daoCliente {
             conex.rs.first();
             mod.setId(conex.rs.getInt("id"));
             mod.setNome(conex.rs.getString("nome"));
-            mod.setSaldo(conex.rs.getDouble("saldo"));
+            mod.setCredito(conex.rs.getDouble("credito"));
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao buscar usuario /nErro"+ex);
