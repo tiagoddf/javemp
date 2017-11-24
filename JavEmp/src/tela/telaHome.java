@@ -8,8 +8,6 @@ package tela;
 import DB.ConnectMYSQL;
 import Funcionarios.telaGerenciarFuncionarios;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,7 +28,7 @@ public class telaHome extends javax.swing.JFrame {
             conex.conectar();
             conex.executaSql("select *from funcionarios where usuario ='"+jLabelUsuario.getText()+"'");
             conex.rs.first();
-            if(conex.rs.getString("tipo").equals("Administrador")){
+            if(conex.rs.getString("cargo").equals("Administrador")){
                jMenuAdmin.setVisible(true);
                 
             }else{
@@ -166,7 +164,7 @@ public class telaHome extends javax.swing.JFrame {
             conex.conectar();
             conex.executaSql("select *from funcionarios where usuario ='"+jLabelUsuario.getText()+"'");
             conex.rs.first();
-            if(conex.rs.getString("tipo").equals("Administrador")){
+            if(conex.rs.getString("cargo").equals("Administrador")){
                 telaGerenciarFuncionarios criarFunc = new telaGerenciarFuncionarios();
                 criarFunc.setVisible(true);
                 
