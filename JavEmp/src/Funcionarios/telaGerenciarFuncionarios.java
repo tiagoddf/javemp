@@ -6,8 +6,6 @@
 package Funcionarios;
 
 import DB.ConnectMYSQL;
-import Funcionarios.beansFuncionarios;
-import Funcionarios.daoFuncionarios;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -16,21 +14,18 @@ import javax.swing.ListSelectionModel;
 /**
  *
  * @author luiz
- */
+*/
 public class telaGerenciarFuncionarios extends javax.swing.JFrame {
-
-    
-        beansFuncionarios mod = new beansFuncionarios();
-        daoFuncionarios control = new daoFuncionarios();
-        ConnectMYSQL conex = new ConnectMYSQL();
-        int flag;
+    beansFuncionarios mod = new beansFuncionarios();
+    daoFuncionarios control = new daoFuncionarios();
+    ConnectMYSQL conex = new ConnectMYSQL();
+    int flag;
     /**
      * Creates new form formUsuario
-     */
+    */
     public telaGerenciarFuncionarios() {
         initComponents();
         preencherTabela("select *from funcionarios order by usuario");
-        
     }
 
     /**
@@ -57,9 +52,10 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
         jButtonExcluir = new javax.swing.JButton();
         jTextFieldId = new javax.swing.JTextField();
         jButtonEditar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jTextField_NomeCompleto = new javax.swing.JTextField();
+        jTextField_Ramal = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -68,6 +64,7 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
 
         jComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Funcionario", " " }));
+        jComboBox.setEnabled(false);
         jComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxActionPerformed(evt);
@@ -94,6 +91,7 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
 
         jTextFieldSenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextFieldSenha.setText("Senha");
+        jTextFieldSenha.setEnabled(false);
         jTextFieldSenha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextFieldSenhaMouseClicked(evt);
@@ -107,9 +105,15 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
 
         jTextFieldNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextFieldNome.setText("Usuário");
+        jTextFieldNome.setEnabled(false);
         jTextFieldNome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextFieldNomeMouseClicked(evt);
+            }
+        });
+        jTextFieldNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNomeActionPerformed(evt);
             }
         });
         jTextFieldNome.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -120,6 +124,7 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
 
         jTextFieldSenha2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextFieldSenha2.setText("Confirmar Senha");
+        jTextFieldSenha2.setEnabled(false);
         jTextFieldSenha2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextFieldSenha2MouseClicked(evt);
@@ -132,7 +137,7 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
         });
 
         jButtonPesquisar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonPesquisar.setText("pesquisar");
+        jButtonPesquisar.setText("IMG");
         jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPesquisarActionPerformed(evt);
@@ -192,13 +197,25 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("Nome Completo");
-        jTextField1.setEnabled(false);
+        jTextField_NomeCompleto.setText("Nome Completo");
+        jTextField_NomeCompleto.setEnabled(false);
+        jTextField_NomeCompleto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField_NomeCompletoMouseClicked(evt);
+            }
+        });
 
-        jTextField2.setText("Ramal");
-        jTextField2.setEnabled(false);
+        jTextField_Ramal.setText("Ramal");
+        jTextField_Ramal.setEnabled(false);
+        jTextField_Ramal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField_RamalMouseClicked(evt);
+            }
+        });
 
         jLabel2.setText("AVATAR");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuário", "Nome Completo", "Ramal", "Cargo" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -213,9 +230,9 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField_NomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2))
+                                .addComponent(jTextField_Ramal))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -227,9 +244,11 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextFieldPesquisar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonPesquisar))
+                                .addComponent(jButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -250,15 +269,14 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldId))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2)
+                            .addComponent(jTextField_Ramal)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jTextField_NomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -274,9 +292,12 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
                                 .addComponent(jButtonCancelar)
                                 .addComponent(jButtonExcluir)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldPesquisar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButtonPesquisar)
+                                .addComponent(jTextFieldId)))))
                 .addGap(6, 6, 6)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
@@ -312,11 +333,12 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-        public void habilitarBotoes(){
+    public void habilitarBotoes(){
         jButtonNovo.setEnabled(false);
         jButtonSalvar.setEnabled(true);
         jButtonCancelar.setEnabled(true);
-        jButtonExcluir.setEnabled(true);
+        jButtonEditar.setEnabled(false);
+        jButtonExcluir.setEnabled(false);
     }
     public void desabilitarBotoes(){
         jButtonNovo.setEnabled(true);
@@ -331,18 +353,31 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
         jTextFieldSenha.setEnabled(true);
         jTextFieldSenha2.setEnabled(true);
         jComboBox.setEnabled(true);
+        jTextField_NomeCompleto.setEnabled(true);
+        jTextField_Ramal.setEnabled(true);
+    }
+    public void infoCampos(){
+        jTextFieldNome.setText("Usuário");
+        jTextFieldSenha.setText("Senha");
+        jTextFieldSenha2.setText("Confirmar Senha");
+        jTextField_NomeCompleto.setText("Nome Completo");
+        jTextField_Ramal.setText("Ramal");
     }
     public void bloquearCampos(){
         jTextFieldNome.setEnabled(false);
         jTextFieldSenha.setEnabled(false);
         jTextFieldSenha2.setEnabled(false);
         jComboBox.setEnabled(false);
+        jTextField_NomeCompleto.setEnabled(false);
+        jTextField_Ramal.setEnabled(false);
     }
     public void limparCampos(){
         jTextFieldId.setText("");
         jTextFieldNome.setText("");
         jTextFieldSenha.setText("");
-        jTextFieldSenha2.setText("");        
+        jTextFieldSenha2.setText("");  
+        jTextField_NomeCompleto.setText("");
+        jTextField_Ramal.setText("");  
     }
     
     
@@ -353,19 +388,24 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
         if(jTextFieldSenha.getText().equals(jTextFieldSenha2.getText())){
             mod.setUsuario(jTextFieldNome.getText());
             mod.setSenha(jTextFieldSenha.getText());
-            mod.setTipo((String) jComboBox.getSelectedItem());
+            mod.setCargo((String) jComboBox.getSelectedItem());
+            mod.setRamal(Integer.parseInt(jTextField_Ramal.getText()));
+            mod.setNomeCompleto(jTextField_NomeCompleto.getText());
+            //
             control.Salvar(mod);  
             bloquearCampos();
             limparCampos();
             desabilitarBotoes();
-            preencherTabela("select *from funcionarios order by usuario");
-        }else{
+            preencherTabela("select * from funcionarios order by usuario");
+        } else {
             JOptionPane.showMessageDialog(null, "As senhas não correspondem");
         } 
-    }else{
+    } else {
             mod.setUsuario(jTextFieldNome.getText());
             mod.setSenha(jTextFieldSenha.getText());
-            mod.setTipo((String) jComboBox.getSelectedItem());
+            mod.setCargo((String) jComboBox.getSelectedItem());
+            mod.setRamal(Integer.parseInt(jTextField_Ramal.getText()));
+            mod.setNomeCompleto(jTextField_NomeCompleto.getText());
             mod.setId(Integer.parseInt(jTextFieldId.getText()));
             control.editar(mod);
             bloquearCampos();
@@ -377,20 +417,20 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
-     habilitarBotoes();
-     liberarCampos();
-     limparCampos();
-     flag =1;
+        habilitarBotoes();
+        liberarCampos();
+        infoCampos();
+        flag =1;
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-     limparCampos();
-     bloquearCampos();
-     desabilitarBotoes();
+        limparCampos();
+        bloquearCampos();
+        desabilitarBotoes();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        int resposta =0;
+        int resposta = 0;
         resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente excluir?");
         if(resposta ==JOptionPane.YES_OPTION){
             mod.setId(Integer.parseInt(jTextFieldId.getText()));
@@ -402,16 +442,17 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jTableUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableUsuariosMouseClicked
-         String usuario =""+jTableUsuarios.getValueAt(jTableUsuarios.getSelectedRow(), 1);
-         conex.conectar();
+        String usuario =""+jTableUsuarios.getValueAt(jTableUsuarios.getSelectedRow(), 1);
+        conex.conectar();
         conex.executaSql("select *from funcionarios where usuario='"+usuario+"'");
             try {
                 conex.rs.first();
                 jTextFieldId.setText(String.valueOf(conex.rs.getInt("id")));
                 jTextFieldNome.setText(conex.rs.getString("usuario"));
                 jTextFieldSenha.setText(conex.rs.getString("senha"));
-                jComboBox.setSelectedItem(conex.rs.getString("tipo"));
-                
+                jComboBox.setSelectedItem(conex.rs.getString("cargo"));
+                jTextField_Ramal.setText(String.valueOf(conex.rs.getInt("ramal")));
+                jTextField_NomeCompleto.setText(conex.rs.getString("nomecompleto"));
                 
                 desabilitarBotoes();
                 bloquearCampos();
@@ -429,25 +470,19 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jTableUsuariosMouseClicked
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-        flag =2;
+        flag = 2;
         liberarCampos();
         habilitarBotoes();
         jTextFieldSenha2.setEnabled(false);
         jButtonEditar.setEnabled(false);
         jButtonExcluir.setEnabled(false);
-        
-        
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jTextFieldPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarActionPerformed
         if(jTextFieldPesquisar.getText().equals("")){
-       
-   }
+        }
         else{
        mod.setPesquisa(jTextFieldPesquisar.getText());   
-      /*  jTextFieldNome.setText(mod.getUsuario());
-        jTextFieldSenha.setText(mod.getSenha());
-        jComboBox.setSelectedItem(mod.getTipo());*/
         control.buscar(mod);
         preencherTabela("select *from funcionarios where usuario like'%" + mod.getPesquisa()+ "%'");
         }
@@ -455,9 +490,6 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
         mod.setPesquisa(jTextFieldPesquisar.getText());   
-      /*  jTextFieldNome.setText(mod.getUsuario());
-        jTextFieldSenha.setText(mod.getSenha());
-        jComboBox.setSelectedItem(mod.getTipo());*/
         control.buscar(mod);
         preencherTabela("select *from funcionarios where usuario like'%" + mod.getPesquisa()+ "%'");
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
@@ -497,19 +529,35 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldSenha2MouseClicked
 
     private void jTextFieldSenha2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSenha2KeyPressed
-            if(jTextFieldSenha2.getText().equals("Confirmar Senha")){
+        if(jTextFieldSenha2.getText().equals("Confirmar Senha")){
               jTextFieldSenha2.setText("");
         }
     }//GEN-LAST:event_jTextFieldSenha2KeyPressed
+
+    private void jTextField_NomeCompletoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField_NomeCompletoMouseClicked
+        if(jTextField_NomeCompleto.getText().equals("Nome Completo")){
+              jTextField_NomeCompleto.setText("");
+        }
+    }//GEN-LAST:event_jTextField_NomeCompletoMouseClicked
+
+    private void jTextField_RamalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField_RamalMouseClicked
+        if(jTextField_Ramal.getText().equals("Ramal")){
+              jTextField_Ramal.setText("");
+        }
+    }//GEN-LAST:event_jTextField_RamalMouseClicked
+
+    private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomeActionPerformed
       public void preencherTabela(String Sql){
           ArrayList dados = new ArrayList();
-          String [] colunas = new String []{"ID","Usuario","Senha","Tipo"};
+          String [] colunas = new String []{"ID","Usuario","Senha","Cargo","Ramal","Nome Completo"};
           conex.conectar();
           conex.executaSql(Sql);        
           try{
               conex.rs.first();
               do{
-                  dados.add(new Object[]{conex.rs.getInt("id"),conex.rs.getString("usuario"),conex.rs.getString("senha"),conex.rs.getString("tipo")});
+                  dados.add(new Object[] { conex.rs.getInt("id"),conex.rs.getString("usuario"),conex.rs.getString("senha"),conex.rs.getString("cargo"),conex.rs.getString("ramal"),conex.rs.getString("nomecompleto") });
               }while(conex.rs.next());
           }catch(SQLException ex){
               JOptionPane.showMessageDialog(null, "Erro ao preencher Arraylist"+ex); 
@@ -555,134 +603,6 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(telaGerenciarFuncionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -700,17 +620,18 @@ public class telaGerenciarFuncionarios extends javax.swing.JFrame {
     private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JComboBox<String> jComboBox;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableUsuarios;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextFieldId;
     private javax.swing.JTextField jTextFieldNome;
     private javax.swing.JTextField jTextFieldPesquisar;
     private javax.swing.JTextField jTextFieldSenha;
     private javax.swing.JTextField jTextFieldSenha2;
+    private javax.swing.JTextField jTextField_NomeCompleto;
+    private javax.swing.JTextField jTextField_Ramal;
     // End of variables declaration//GEN-END:variables
 }

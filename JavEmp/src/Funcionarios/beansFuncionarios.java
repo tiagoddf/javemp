@@ -15,9 +15,10 @@ public class beansFuncionarios {
     private int id;
     private String usuario;
     private String senha;
-    private String tipo;
+    private String cargo;
     private String pesquisa;
-    
+    private int ramal;
+    private String nomecompleto;
 
     /**
      * @return the id
@@ -61,18 +62,26 @@ public class beansFuncionarios {
         this.senha = senha;
     }
 
-    /**
-     * @return the tipo
-     */
-    public String getTipo() {
-        return tipo;
+    // cargo
+    public String getCargo() {
+        return cargo;
     }
-
-    /**
-     * @param tipo the tipo to set
-     */
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+    // ramal
+    public int getRamal() {
+        return ramal;
+    }
+    public void setRamal(int ramal) {
+        this.ramal = ramal;
+    }
+    // nome completo
+    public String getNomeCompleto() {
+        return nomecompleto;
+    }
+    public void setNomeCompleto(String nomecompleto) {
+        this.nomecompleto = nomecompleto;
     }
 
     /**
@@ -89,4 +98,6 @@ public class beansFuncionarios {
         this.pesquisa = pesquisa;
     }
 
+    
+    
 }

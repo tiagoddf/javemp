@@ -5,12 +5,22 @@
  */
 package Logando;
 
+import DB.ConnectMYSQL;
+import Funcionarios.beansFuncionarios;
+import Funcionarios.daoFuncionarios;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author tduarte
  */
 public class telaTrocaSenha extends javax.swing.JFrame {
-
+    
+    beansFuncionarios mod = new beansFuncionarios();
+    daoFuncionarios control = new daoFuncionarios();
+    ConnectMYSQL conex = new ConnectMYSQL();
     /**
      * Creates new form telaTrocaSenha
      */
@@ -159,8 +169,42 @@ public class telaTrocaSenha extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextField_ConfirmarPassNovaMouseClicked
 
+    public void limparCampos(String Type) {
+        if("usr".equals(Type)) jTextField_Usuario.setText("");
+        else if("oldsenha".equals(Type)) jTextField_PassAntiga.setText("");
+        else if("newsenha".equals(Type)) {
+            jTextField_PassNova.setText("");
+            jTextField_ConfirmarPassNova.setText("");
+        }
+    }
+    
     private void jButton_ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ConfirmarActionPerformed
+        String usuario = jTextField_Usuario.getText();
+        conex.executaSql("select * from funcionarios where usuario = '"+usuario+"'");
+            try {
+                conex.rs.first();
+                if(mod.getSenha() != jTextField_PassAntiga.getText()) {
+                    jTextField_PassAntiga.setText(conex.rs.getString("senha"));
+                    JOptionPane.showMessageDialog(null, "Essa não é sua senha atual.");
+                    limparCampos("oldsenha");
+                }    
+                if(jTextField_PassNova.getText().equals(jTextField_ConfirmarPassNova.getText())) {
+                    PreparedStatement pst = conex.con.prepareStatement("update funcionarios set senha=? where usuario=?");
+                    pst.setString   (1, mod.getSenha());
+                    pst.setString   (2, mod.getUsuario());
+                    pst.execute();
+                    JOptionPane.showMessageDialog(null, "Dados alterados com sucessos");
+                }
+                else {
+                    limparCampos("newsenha");
+                    JOptionPane.showMessageDialog(null, "As novas senhas não estão batendo.");
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Esse usuário não é um usuário valido.");
+                limparCampos("usr");
+            }
         
+        conex.desconecta();
     }//GEN-LAST:event_jButton_ConfirmarActionPerformed
 
     private void jButton_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarActionPerformed
