@@ -44,7 +44,8 @@ public class telaLogin extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jButtonLogin.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jButtonLogin.setText("Entrar");
@@ -72,6 +73,16 @@ public class telaLogin extends javax.swing.JFrame {
         jPasswordFieldSenha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPasswordFieldSenhaMouseClicked(evt);
+            }
+        });
+        jPasswordFieldSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordFieldSenhaActionPerformed(evt);
+            }
+        });
+        jPasswordFieldSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordFieldSenhaKeyPressed(evt);
             }
         });
 
@@ -126,7 +137,8 @@ public class telaLogin extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(397, 294));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
        
@@ -175,6 +187,16 @@ public class telaLogin extends javax.swing.JFrame {
         jTextFieldNome.setText("");
         jPasswordFieldSenha.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jPasswordFieldSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordFieldSenhaActionPerformed
+
+    private void jPasswordFieldSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaKeyPressed
+           if(jPasswordFieldSenha.getText().equals("senha")){
+           jPasswordFieldSenha.setText("");
+       }   
+    }//GEN-LAST:event_jPasswordFieldSenhaKeyPressed
 
     /**
      * @param args the command line arguments

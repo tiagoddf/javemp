@@ -7,7 +7,7 @@ package tela;
 
 import Funcionarios.telaGerenciarFuncionarios;
 import DB.ConnectMYSQL;
-import Funcionarios.telaGerenciarFuncionarios2;
+import Produtos.telaGerenciarProdutos;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -62,14 +62,15 @@ public class telaHome extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItemControleDeMaterial = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuAdmin = new javax.swing.JMenu();
         jMenuItem_CriarUsuario = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItemGerenciarProdutos = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabelUsuario.setText("jLabel1");
 
@@ -99,6 +100,11 @@ public class telaHome extends javax.swing.JFrame {
         jMenu2.setText("Sistema");
 
         jMenuItem1.setText("Estoque");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem1);
 
         jMenuItem2.setText("Entrade e saída");
@@ -110,8 +116,13 @@ public class telaHome extends javax.swing.JFrame {
         jMenuItem8.setText("Alocação");
         jMenu2.add(jMenuItem8);
 
-        jMenuItem9.setText("Controle de Material");
-        jMenu2.add(jMenuItem9);
+        jMenuItemControleDeMaterial.setText("Controle de Material");
+        jMenuItemControleDeMaterial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemControleDeMaterialActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItemControleDeMaterial);
 
         jMenuBar1.add(jMenu2);
 
@@ -128,8 +139,13 @@ public class telaHome extends javax.swing.JFrame {
         });
         jMenuAdmin.add(jMenuItem_CriarUsuario);
 
-        jMenuItem5.setText("Gerenciar Produtos");
-        jMenuAdmin.add(jMenuItem5);
+        jMenuItemGerenciarProdutos.setText("Gerenciar Produtos");
+        jMenuItemGerenciarProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemGerenciarProdutosActionPerformed(evt);
+            }
+        });
+        jMenuAdmin.add(jMenuItemGerenciarProdutos);
 
         jMenuItem7.setText("Logs Movimentação");
         jMenuAdmin.add(jMenuItem7);
@@ -145,7 +161,7 @@ public class telaHome extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelUsuario)
-                .addContainerGap(486, Short.MAX_VALUE))
+                .addContainerGap(489, Short.MAX_VALUE))
             .addComponent(jDesktopPane1)
         );
         layout.setVerticalGroup(
@@ -156,7 +172,8 @@ public class telaHome extends javax.swing.JFrame {
                 .addComponent(jLabelUsuario))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(551, 529));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
       
@@ -182,6 +199,41 @@ public class telaHome extends javax.swing.JFrame {
         }
         conex.desconecta();          
     }//GEN-LAST:event_jMenuItem_CriarUsuarioActionPerformed
+
+    private void jMenuItemControleDeMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemControleDeMaterialActionPerformed
+   
+    }//GEN-LAST:event_jMenuItemControleDeMaterialActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItemGerenciarProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGerenciarProdutosActionPerformed
+        // TODO add your handling code here:
+         try {
+            conex.conectar();
+            conex.executaSql("select *from funcionarios where usuario ='"+jLabelUsuario.getText()+"'");
+            conex.rs.first();
+            if(conex.rs.getString("cargo").equals("Administrador")){
+                telaGerenciarProdutos gerenciarProdutos = new telaGerenciarProdutos();
+                
+                
+                gerenciarProdutos.setVisible(true);
+               jDesktopPane1.add(gerenciarProdutos);
+               jTabbedPane1.addTab("Gerenciar Produtos", gerenciarProdutos);
+               
+            }else{
+                JOptionPane.showMessageDialog(null, "Você não tem autorização para esta função");
+            }                
+
+        } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null, "ERRO "+ex);
+        }
+        conex.desconecta();      
+        
+        
+        
+    }//GEN-LAST:event_jMenuItemGerenciarProdutosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,11 +286,11 @@ public class telaHome extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem jMenuItemControleDeMaterial;
+    private javax.swing.JMenuItem jMenuItemGerenciarProdutos;
     private javax.swing.JMenuItem jMenuItem_CriarUsuario;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
