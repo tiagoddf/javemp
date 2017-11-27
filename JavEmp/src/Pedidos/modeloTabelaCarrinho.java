@@ -6,7 +6,6 @@
 package Pedidos;
 
 import Funcionarios.*;
-import Pedidos.telaTirarPedido;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
@@ -65,7 +64,7 @@ public class modeloTabelaCarrinho extends AbstractTableModel {
         Object[] linha = (Object[])getLinhas().get(numLin);
         return linha[numCol];
     }
-    public void addRow(telaTirarPedido p){
+    public void addRow(atelaTirarPedido p){
         this.linhas.add(p);
     }
     

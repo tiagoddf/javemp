@@ -5,8 +5,13 @@
  */
 package tela;
 
+import Clientes.telaGerenciarClientes;
 import Funcionarios.telaGerenciarFuncionarios;
 import DB.ConnectMYSQL;
+import Funcionarios.telaEntradaSaida;
+import Logando.telaLogin;
+import Logando.telaTrocaSenha;
+import Pedidos.telaTirarPedido;
 import Produtos.telaGerenciarProdutos;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -67,12 +72,14 @@ public class telaHome extends javax.swing.JFrame {
         jMenuAdmin = new javax.swing.JMenu();
         jMenuItem_CriarUsuario = new javax.swing.JMenuItem();
         jMenuItemGerenciarProdutos = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jLabelUsuario.setText("jLabel1");
+        jLabelUsuario.setText("jLabelUsuario");
 
         jDesktopPane1.setLayer(jTabbedPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -80,19 +87,29 @@ public class telaHome extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Arquivo");
 
         jMenuItem6.setText("Alterar Senha");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem6);
 
         jMenuItem3.setText("Sair");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuBar1.add(jMenu1);
@@ -108,9 +125,19 @@ public class telaHome extends javax.swing.JFrame {
         jMenu2.add(jMenuItem1);
 
         jMenuItem2.setText("Entrade e saída");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem2);
 
         jMenuItem4.setText("Tirar Pedido");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuItem8.setText("Alocação");
@@ -147,8 +174,19 @@ public class telaHome extends javax.swing.JFrame {
         });
         jMenuAdmin.add(jMenuItemGerenciarProdutos);
 
+        jMenuItem5.setText("Gerenciar Clientes");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenuAdmin.add(jMenuItem5);
+
         jMenuItem7.setText("Logs Movimentação");
         jMenuAdmin.add(jMenuItem7);
+
+        jMenuItem9.setText("Estatísticas de Venda");
+        jMenuAdmin.add(jMenuItem9);
 
         jMenuBar1.add(jMenuAdmin);
 
@@ -158,21 +196,21 @@ public class telaHome extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelUsuario)
-                .addContainerGap(489, Short.MAX_VALUE))
             .addComponent(jDesktopPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabelUsuario)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jDesktopPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelUsuario))
+                .addComponent(jLabelUsuario)
+                .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(551, 529));
+        setSize(new java.awt.Dimension(584, 416));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -218,7 +256,7 @@ public class telaHome extends javax.swing.JFrame {
                 telaGerenciarProdutos gerenciarProdutos = new telaGerenciarProdutos();
                 
                 
-                gerenciarProdutos.setVisible(true);
+               gerenciarProdutos.setVisible(true);
                jDesktopPane1.add(gerenciarProdutos);
                jTabbedPane1.addTab("Gerenciar Produtos", gerenciarProdutos);
                
@@ -234,6 +272,42 @@ public class telaHome extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jMenuItemGerenciarProdutosActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+            telaTirarPedido gerenciarPedido = new telaTirarPedido();
+            gerenciarPedido.setVisible(true);
+            jDesktopPane1.add(gerenciarPedido);
+            jTabbedPane1.addTab("Tirar Pedido", gerenciarPedido);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        telaTrocaSenha tsenha = new telaTrocaSenha();
+        tsenha.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        telaGerenciarClientes gerenciarClientes = new telaGerenciarClientes();
+        gerenciarClientes.setVisible(true);
+        jDesktopPane1.add(gerenciarClientes);
+        jTabbedPane1.addTab("Gerenciar Clientes", gerenciarClientes);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        conex.desconecta();
+        telaLogin tlogin = new telaLogin();
+        tlogin.setVisible(true);
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        telaEntradaSaida tentradasaida = new telaEntradaSaida();
+        tentradasaida.setVisible(true);
+        jDesktopPane1.add(tentradasaida);
+        jTabbedPane1.addTab("Entrada e Saída", tentradasaida);
+        jDesktopPane1.setSize(772, 366);
+        jTabbedPane1.setSize(772, 366);
+        //tentradasaida.setSize(772, 366);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,9 +360,11 @@ public class telaHome extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jMenuItemControleDeMaterial;
     private javax.swing.JMenuItem jMenuItemGerenciarProdutos;
     private javax.swing.JMenuItem jMenuItem_CriarUsuario;
