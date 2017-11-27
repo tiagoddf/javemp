@@ -5,80 +5,29 @@
  */
 package Funcionarios;
 
-/**
- *
- * @author luiz
- */
-
 import DB.ConnectMYSQL;
-import Funcionarios.beansFuncionarios;
-import Funcionarios.daoFuncionarios;
-import Funcionarios.modeloTabela;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
-public class telaGerenciarFuncionarios extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form telaGerenciasFuncionarios1
-     */
+/**
+ *
+ * @author luiz
+*/
+public class telaGerenciarFuncionarios2 extends javax.swing.JFrame {
     beansFuncionarios mod = new beansFuncionarios();
     daoFuncionarios control = new daoFuncionarios();
     ConnectMYSQL conex = new ConnectMYSQL();
     int flag;
-    
-    public telaGerenciarFuncionarios() {
+    /**
+     * Creates new form formUsuario
+    */
+    public telaGerenciarFuncionarios2() {
         initComponents();
-        preencherTabela("select *from funcionarios order by usuario");  
+        preencherTabela("select *from funcionarios order by usuario");
     }
-    
-    public void habilitarBotoes(){
-        jButtonNovo.setEnabled(false);
-        jButtonSalvar.setEnabled(true);
-        jButtonCancelar.setEnabled(true);
-        jButtonEditar.setEnabled(false);
-        jButtonExcluir.setEnabled(false);
-    }
-    public void desabilitarBotoes(){
-        jButtonNovo.setEnabled(true);
-        jButtonEditar.setEnabled(true);
-        jButtonSalvar.setEnabled(false);
-        jButtonCancelar.setEnabled(false);
-        jButtonEditar.setEnabled(false);
-        jButtonExcluir.setEnabled(false);
-    }
-    public void liberarCampos(){
-        jTextFieldNome.setEnabled(true);
-        jTextFieldSenha.setEnabled(true);
-        jTextFieldSenha2.setEnabled(true);
-        jComboBox.setEnabled(true);
-        jTextField_NomeCompleto.setEnabled(true);
-        jTextField_Ramal.setEnabled(true);
-    }
-    public void infoCampos(){
-        jTextFieldNome.setText("Usuário");
-        jTextFieldSenha.setText("Senha");
-        jTextFieldSenha2.setText("Confirmar Senha");
-        jTextField_NomeCompleto.setText("Nome Completo");
-        jTextField_Ramal.setText("Ramal");
-    }
-    public void bloquearCampos(){
-        jTextFieldNome.setEnabled(false);
-        jTextFieldSenha.setEnabled(false);
-        jTextFieldSenha2.setEnabled(false);
-        jComboBox.setEnabled(false);
-        jTextField_NomeCompleto.setEnabled(false);
-        jTextField_Ramal.setEnabled(false);
-    }
-    public void limparCampos(){
-        jTextFieldId.setText("");
-        jTextFieldNome.setText("");
-        jTextFieldSenha.setText("");
-        jTextFieldSenha2.setText("");  
-        jTextField_NomeCompleto.setText("");
-        jTextField_Ramal.setText("");  
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,7 +37,6 @@ public class telaGerenciarFuncionarios extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jComboBox = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -108,11 +56,9 @@ public class telaGerenciarFuncionarios extends javax.swing.JInternalFrame {
         jTextField_Ramal = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
-        setClosable(true);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Gerenciar Funcionarios");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -357,6 +303,9 @@ public class telaGerenciarFuncionarios extends javax.swing.JInternalFrame {
                 .addGap(19, 19, 19))
         );
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Gerenciar Funcionarios");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -384,113 +333,74 @@ public class telaGerenciarFuncionarios extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxActionPerformed
-
-    private void jTableUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableUsuariosMouseClicked
-        String usuario =""+jTableUsuarios.getValueAt(jTableUsuarios.getSelectedRow(), 1);
-        conex.conectar();
-        conex.executaSql("select *from funcionarios where usuario='"+usuario+"'");
-        try {
-            conex.rs.first();
-            jTextFieldId.setText(String.valueOf(conex.rs.getInt("id")));
-            jTextFieldNome.setText(conex.rs.getString("usuario"));
-            jTextFieldSenha.setText(conex.rs.getString("senha"));
-            jComboBox.setSelectedItem(conex.rs.getString("cargo"));
-            jTextField_Ramal.setText(String.valueOf(conex.rs.getInt("ramal")));
-            jTextField_NomeCompleto.setText(conex.rs.getString("nomecompleto"));
-
-            desabilitarBotoes();
-            bloquearCampos();
-
-            jButtonNovo.setEnabled(true);
-            jButtonCancelar.setEnabled(true);
-            jButtonEditar.setEnabled(true);
-            jButtonExcluir.setEnabled(true);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao selecionar os dados "+ex);
-        }
-
-        conex.desconecta();
-
-    }//GEN-LAST:event_jTableUsuariosMouseClicked
-
-    private void jTextFieldSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldSenhaMouseClicked
-        if(jTextFieldSenha.getText().equals("Senha")){
-            jTextFieldSenha.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldSenhaMouseClicked
-
-    private void jTextFieldSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSenhaKeyPressed
-        if(jTextFieldSenha.getText().equals("Senha")){
-            jTextFieldSenha.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldSenhaKeyPressed
-
-    private void jTextFieldNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldNomeMouseClicked
-        if(jTextFieldNome.getText().equals("Usuário")){
-            jTextFieldNome.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldNomeMouseClicked
-
-    private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNomeActionPerformed
-
-    private void jTextFieldNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomeKeyPressed
-        if(jTextFieldNome.getText().equals("Usuário")){
-            jTextFieldNome.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldNomeKeyPressed
-
-    private void jTextFieldSenha2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldSenha2MouseClicked
-        if(jTextFieldSenha2.getText().equals("Confirmar Senha")){
-            jTextFieldSenha2.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldSenha2MouseClicked
-
-    private void jTextFieldSenha2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSenha2KeyPressed
-        if(jTextFieldSenha2.getText().equals("Confirmar Senha")){
-            jTextFieldSenha2.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldSenha2KeyPressed
-
-    private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
-        mod.setPesquisa(jTextFieldPesquisar.getText());
-        control.buscar(mod);
-        preencherTabela("select *from funcionarios where usuario like'%" + mod.getPesquisa()+ "%'");
-    }//GEN-LAST:event_jButtonPesquisarActionPerformed
-
-    private void jTextFieldPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarActionPerformed
-        if(jTextFieldPesquisar.getText().equals("")){
-        }
-        else{
-            mod.setPesquisa(jTextFieldPesquisar.getText());
-            control.buscar(mod);
-            preencherTabela("select *from funcionarios where usuario like'%" + mod.getPesquisa()+ "%'");
-        }
-    }//GEN-LAST:event_jTextFieldPesquisarActionPerformed
-
+    public void habilitarBotoes(){
+        jButtonNovo.setEnabled(false);
+        jButtonSalvar.setEnabled(true);
+        jButtonCancelar.setEnabled(true);
+        jButtonEditar.setEnabled(false);
+        jButtonExcluir.setEnabled(false);
+    }
+    public void desabilitarBotoes(){
+        jButtonNovo.setEnabled(true);
+        jButtonEditar.setEnabled(true);
+        jButtonSalvar.setEnabled(false);
+        jButtonCancelar.setEnabled(false);
+        jButtonEditar.setEnabled(false);
+        jButtonExcluir.setEnabled(false);
+    }
+    public void liberarCampos(){
+        jTextFieldNome.setEnabled(true);
+        jTextFieldSenha.setEnabled(true);
+        jTextFieldSenha2.setEnabled(true);
+        jComboBox.setEnabled(true);
+        jTextField_NomeCompleto.setEnabled(true);
+        jTextField_Ramal.setEnabled(true);
+    }
+    public void infoCampos(){
+        jTextFieldNome.setText("Usuário");
+        jTextFieldSenha.setText("Senha");
+        jTextFieldSenha2.setText("Confirmar Senha");
+        jTextField_NomeCompleto.setText("Nome Completo");
+        jTextField_Ramal.setText("Ramal");
+    }
+    public void bloquearCampos(){
+        jTextFieldNome.setEnabled(false);
+        jTextFieldSenha.setEnabled(false);
+        jTextFieldSenha2.setEnabled(false);
+        jComboBox.setEnabled(false);
+        jTextField_NomeCompleto.setEnabled(false);
+        jTextField_Ramal.setEnabled(false);
+    }
+    public void limparCampos(){
+        jTextFieldId.setText("");
+        jTextFieldNome.setText("");
+        jTextFieldSenha.setText("");
+        jTextFieldSenha2.setText("");  
+        jTextField_NomeCompleto.setText("");
+        jTextField_Ramal.setText("");  
+    }
+    
+    
+    
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-
-        if(flag ==1){
-            if(jTextFieldSenha.getText().equals(jTextFieldSenha2.getText())){
-                mod.setUsuario(jTextFieldNome.getText());
-                mod.setSenha(jTextFieldSenha.getText());
-                mod.setCargo((String) jComboBox.getSelectedItem());
-                mod.setRamal(Integer.parseInt(jTextField_Ramal.getText()));
-                mod.setNomeCompleto(jTextField_NomeCompleto.getText());
-                //
-                control.Salvar(mod);
-                bloquearCampos();
-                limparCampos();
-                desabilitarBotoes();
-                preencherTabela("select * from funcionarios order by usuario");
-            } else {
-                JOptionPane.showMessageDialog(null, "As senhas não correspondem");
-            }
+        
+    if(flag ==1){
+        if(jTextFieldSenha.getText().equals(jTextFieldSenha2.getText())){
+            mod.setUsuario(jTextFieldNome.getText());
+            mod.setSenha(jTextFieldSenha.getText());
+            mod.setCargo((String) jComboBox.getSelectedItem());
+            mod.setRamal(Integer.parseInt(jTextField_Ramal.getText()));
+            mod.setNomeCompleto(jTextField_NomeCompleto.getText());
+            //
+            control.Salvar(mod);  
+            bloquearCampos();
+            limparCampos();
+            desabilitarBotoes();
+            preencherTabela("select * from funcionarios order by usuario");
         } else {
+            JOptionPane.showMessageDialog(null, "As senhas não correspondem");
+        } 
+    } else {
             mod.setUsuario(jTextFieldNome.getText());
             mod.setSenha(jTextFieldSenha.getText());
             mod.setCargo((String) jComboBox.getSelectedItem());
@@ -502,8 +412,8 @@ public class telaGerenciarFuncionarios extends javax.swing.JInternalFrame {
             limparCampos();
             desabilitarBotoes();
             preencherTabela("select *from funcionarios order by usuario");
-
-        }
+        
+      }   
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
@@ -525,11 +435,39 @@ public class telaGerenciarFuncionarios extends javax.swing.JInternalFrame {
         if(resposta ==JOptionPane.YES_OPTION){
             mod.setId(Integer.parseInt(jTextFieldId.getText()));
             control.excluir(mod);
-            preencherTabela("select *from funcionarios order by usuario");
-            desabilitarBotoes();
+             preencherTabela("select *from funcionarios order by usuario");
+             desabilitarBotoes();
         }
-
+        
     }//GEN-LAST:event_jButtonExcluirActionPerformed
+
+    private void jTableUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableUsuariosMouseClicked
+        String usuario =""+jTableUsuarios.getValueAt(jTableUsuarios.getSelectedRow(), 1);
+        conex.conectar();
+        conex.executaSql("select *from funcionarios where usuario='"+usuario+"'");
+            try {
+                conex.rs.first();
+                jTextFieldId.setText(String.valueOf(conex.rs.getInt("id")));
+                jTextFieldNome.setText(conex.rs.getString("usuario"));
+                jTextFieldSenha.setText(conex.rs.getString("senha"));
+                jComboBox.setSelectedItem(conex.rs.getString("cargo"));
+                jTextField_Ramal.setText(String.valueOf(conex.rs.getInt("ramal")));
+                jTextField_NomeCompleto.setText(conex.rs.getString("nomecompleto"));
+                
+                desabilitarBotoes();
+                bloquearCampos();
+                
+                jButtonNovo.setEnabled(true);
+                jButtonCancelar.setEnabled(true);
+                jButtonEditar.setEnabled(true);
+                jButtonExcluir.setEnabled(true);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao selecionar os dados "+ex);
+            }
+        
+        conex.desconecta();
+        
+    }//GEN-LAST:event_jTableUsuariosMouseClicked
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
         flag = 2;
@@ -540,18 +478,78 @@ public class telaGerenciarFuncionarios extends javax.swing.JInternalFrame {
         jButtonExcluir.setEnabled(false);
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
+    private void jTextFieldPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarActionPerformed
+        if(jTextFieldPesquisar.getText().equals("")){
+        }
+        else{
+       mod.setPesquisa(jTextFieldPesquisar.getText());   
+        control.buscar(mod);
+        preencherTabela("select *from funcionarios where usuario like'%" + mod.getPesquisa()+ "%'");
+        }
+    }//GEN-LAST:event_jTextFieldPesquisarActionPerformed
+
+    private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
+        mod.setPesquisa(jTextFieldPesquisar.getText());   
+        control.buscar(mod);
+        preencherTabela("select *from funcionarios where usuario like'%" + mod.getPesquisa()+ "%'");
+    }//GEN-LAST:event_jButtonPesquisarActionPerformed
+
+    private void jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxActionPerformed
+
+    private void jTextFieldNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldNomeMouseClicked
+           if(jTextFieldNome.getText().equals("Usuário")){
+            jTextFieldNome.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldNomeMouseClicked
+
+    private void jTextFieldNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomeKeyPressed
+           if(jTextFieldNome.getText().equals("Usuário")){
+            jTextFieldNome.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldNomeKeyPressed
+
+    private void jTextFieldSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldSenhaMouseClicked
+           if(jTextFieldSenha.getText().equals("Senha")){
+            jTextFieldSenha.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldSenhaMouseClicked
+
+    private void jTextFieldSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSenhaKeyPressed
+           if(jTextFieldSenha.getText().equals("Senha")){
+            jTextFieldSenha.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldSenhaKeyPressed
+
+    private void jTextFieldSenha2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldSenha2MouseClicked
+           if(jTextFieldSenha2.getText().equals("Confirmar Senha")){
+            jTextFieldSenha2.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldSenha2MouseClicked
+
+    private void jTextFieldSenha2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSenha2KeyPressed
+        if(jTextFieldSenha2.getText().equals("Confirmar Senha")){
+              jTextFieldSenha2.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldSenha2KeyPressed
+
     private void jTextField_NomeCompletoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField_NomeCompletoMouseClicked
         if(jTextField_NomeCompleto.getText().equals("Nome Completo")){
-            jTextField_NomeCompleto.setText("");
+              jTextField_NomeCompleto.setText("");
         }
     }//GEN-LAST:event_jTextField_NomeCompletoMouseClicked
 
     private void jTextField_RamalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField_RamalMouseClicked
         if(jTextField_Ramal.getText().equals("Ramal")){
-            jTextField_Ramal.setText("");
+              jTextField_Ramal.setText("");
         }
     }//GEN-LAST:event_jTextField_RamalMouseClicked
-     public void preencherTabela(String Sql){
+
+    private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomeActionPerformed
+      public void preencherTabela(String Sql){
           ArrayList dados = new ArrayList();
           String [] colunas = new String []{"ID","Usuario","Senha","Cargo","Ramal","Nome Completo"};
           conex.conectar();
@@ -580,6 +578,40 @@ public class telaGerenciarFuncionarios extends javax.swing.JInternalFrame {
           jTableUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
           conex.desconecta();
       }
+        
+    
+  
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(telaGerenciarFuncionarios2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(telaGerenciarFuncionarios2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(telaGerenciarFuncionarios2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(telaGerenciarFuncionarios2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new telaGerenciarFuncionarios2().setVisible(true);
+            }
+        });
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonEditar;

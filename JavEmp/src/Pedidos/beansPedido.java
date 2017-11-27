@@ -14,6 +14,12 @@ public class beansPedido {
     private int desconto;
     private double saldo;
     private double saldoNovo;
+    private int idCompra;
+    private String nomeProdutoCompra;
+    private String nomeClienteCompra;
+    private String tipoCompra;
+    private int quantidadeCompra;
+    private double preçoCompra;
 
     /**
      * @return the valorAtual
@@ -69,6 +75,90 @@ public class beansPedido {
      */
     public void setSaldoNovo(double saldoNovo) {
         this.saldoNovo = saldoNovo;
+    }
+
+    /**
+     * @return the idCompra
+     */
+    public int getIdCompra() {
+        return idCompra;
+    }
+
+    /**
+     * @param idCompra the idCompra to set
+     */
+    public void setIdCompra(int idCompra) {
+        this.idCompra = idCompra;
+    }
+
+    /**
+     * @return the nomeProdutoCompra
+     */
+    public String getNomeProdutoCompra() {
+        return nomeProdutoCompra;
+    }
+
+    /**
+     * @param nomeProdutoCompra the nomeProdutoCompra to set
+     */
+    public void setNomeProdutoCompra(String nomeProdutoCompra) {
+        this.nomeProdutoCompra = nomeProdutoCompra;
+    }
+
+    /**
+     * @return the nomeClienteCompra
+     */
+    public String getNomeClienteCompra() {
+        return nomeClienteCompra;
+    }
+
+    /**
+     * @param nomeClienteCompra the nomeClienteCompra to set
+     */
+    public void setNomeClienteCompra(String nomeClienteCompra) {
+        this.nomeClienteCompra = nomeClienteCompra;
+    }
+
+    /**
+     * @return the tipoCompra
+     */
+    public String getTipoCompra() {
+        return tipoCompra;
+    }
+
+    /**
+     * @param tipoCompra the tipoCompra to set
+     */
+    public void setTipoCompra(String tipoCompra) {
+        this.tipoCompra = tipoCompra;
+    }
+
+    /**
+     * @return the quantidadeCompra
+     */
+    public int getQuantidadeCompra() {
+        return quantidadeCompra;
+    }
+
+    /**
+     * @param quantidadeCompra the quantidadeCompra to set
+     */
+    public void setQuantidadeCompra(int quantidadeCompra) {
+        this.quantidadeCompra = quantidadeCompra;
+    }
+
+    /**
+     * @return the preçoCompra
+     */
+    public double getPreçoCompra() {
+        return preçoCompra;
+    }
+
+    /**
+     * @param preçoCompra the preçoCompra to set
+     */
+    public void setPreçoCompra(double preçoCompra) {
+        this.preçoCompra = preçoCompra;
     }
     
     

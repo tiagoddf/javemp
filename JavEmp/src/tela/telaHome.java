@@ -5,8 +5,9 @@
  */
 package tela;
 
-import DB.ConnectMYSQL;
 import Funcionarios.telaGerenciarFuncionarios;
+import DB.ConnectMYSQL;
+import Funcionarios.telaGerenciarFuncionarios2;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -17,10 +18,9 @@ import javax.swing.JOptionPane;
 public class telaHome extends javax.swing.JFrame {
 
     ConnectMYSQL conex = new ConnectMYSQL();
-    
     public telaHome(String usuario) {
         initComponents();
-        conex.conectar();
+        conex.conectar();   
         
         jLabelUsuario.setText(usuario);
         //DEIXAR O ADMIN VISIVEL CASO SEJA ADMIN A1
@@ -50,8 +50,9 @@ public class telaHome extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jInternalFrame1 = new javax.swing.JInternalFrame();
         jLabelUsuario = new javax.swing.JLabel();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -70,25 +71,19 @@ public class telaHome extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jInternalFrame1.setVisible(true);
-
         jLabelUsuario.setText("jLabel1");
 
-        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
-        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
-        jInternalFrame1Layout.setHorizontalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(328, Short.MAX_VALUE))
+        jDesktopPane1.setLayer(jTabbedPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane1)
         );
-        jInternalFrame1Layout.setVerticalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap(233, Short.MAX_VALUE)
-                .addComponent(jLabelUsuario)
-                .addContainerGap())
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Arquivo");
@@ -147,11 +142,18 @@ public class telaHome extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelUsuario)
+                .addContainerGap(486, Short.MAX_VALUE))
+            .addComponent(jDesktopPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jDesktopPane1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelUsuario))
         );
 
         pack();
@@ -159,23 +161,26 @@ public class telaHome extends javax.swing.JFrame {
 
       
     private void jMenuItem_CriarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_CriarUsuarioActionPerformed
-
         try {
             conex.conectar();
             conex.executaSql("select *from funcionarios where usuario ='"+jLabelUsuario.getText()+"'");
             conex.rs.first();
             if(conex.rs.getString("cargo").equals("Administrador")){
                 telaGerenciarFuncionarios criarFunc = new telaGerenciarFuncionarios();
-                criarFunc.setVisible(true);
                 
+                
+                criarFunc.setVisible(true);
+               jDesktopPane1.add(criarFunc);
+               jTabbedPane1.addTab("Criar Funcionario", criarFunc);
+               
             }else{
                 JOptionPane.showMessageDialog(null, "Você não tem autorização para esta função");
-            }
+            }                
+
         } catch (SQLException ex) {
              JOptionPane.showMessageDialog(null, "ERRO "+ex);
         }
-        conex.desconecta();
-              
+        conex.desconecta();          
     }//GEN-LAST:event_jMenuItem_CriarUsuarioActionPerformed
 
     /**
@@ -185,7 +190,7 @@ public class telaHome extends javax.swing.JFrame {
         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Metal".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -201,6 +206,12 @@ public class telaHome extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -212,7 +223,7 @@ public class telaHome extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabelUsuario;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -229,5 +240,6 @@ public class telaHome extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jMenuItem_CriarUsuario;
+    private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }
