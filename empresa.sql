@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 22-Nov-2017 às 19:30
+-- Generation Time: 27-Nov-2017 às 22:06
 -- Versão do servidor: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -44,8 +44,9 @@ CREATE TABLE `funcionarios` (
   `id` int(11) NOT NULL,
   `usuario` varchar(50) NOT NULL,
   `senha` varchar(50) NOT NULL,
-  `tipo` varchar(15) NOT NULL,
-  `ramal` int(5) NOT NULL
+  `cargo` varchar(15) NOT NULL,
+  `ramal` int(5) NOT NULL,
+  `nomecompleto` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
