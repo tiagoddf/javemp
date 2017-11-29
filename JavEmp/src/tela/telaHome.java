@@ -13,6 +13,7 @@ import Logando.telaLogin;
 import Logando.telaTrocaSenha;
 import Pedidos.telaTirarPedido;
 import Produtos.telaGerenciarProdutos;
+import java.awt.Frame;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -25,6 +26,7 @@ public class telaHome extends javax.swing.JFrame {
     ConnectMYSQL conex = new ConnectMYSQL();
     public telaHome(String usuario) {
         initComponents();
+        setExtendedState(java.awt.Frame.MAXIMIZED_BOTH); // iniciar com tela full
         conex.conectar();   
         
         jLabelUsuario.setText(usuario);
@@ -76,11 +78,14 @@ public class telaHome extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenu_Minimizar = new javax.swing.JMenu();
+        jMenu_Redimencionar = new javax.swing.JMenu();
+        jMenu_Fechar = new javax.swing.JMenu();
 
         jMenuItem10.setText("jMenuItem10");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
+        setUndecorated(true);
 
         jLabelUsuario.setText("jLabelUsuario");
 
@@ -90,7 +95,7 @@ public class telaHome extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +182,7 @@ public class telaHome extends javax.swing.JFrame {
         });
         jMenuAdmin.add(jMenuItemGerenciarProdutos);
 
-        jMenuItem5.setText("Gerenciar Clientes");
+        jMenuItem5.setText("* Gerenciar Clientes *");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
@@ -192,6 +197,45 @@ public class telaHome extends javax.swing.JFrame {
         jMenuAdmin.add(jMenuItem9);
 
         jMenuBar1.add(jMenuAdmin);
+
+        jMenu_Minimizar.setText("-");
+        jMenu_Minimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu_MinimizarMouseClicked(evt);
+            }
+        });
+        jMenu_Minimizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu_MinimizarActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jMenu_Minimizar);
+
+        jMenu_Redimencionar.setText("[]");
+        jMenu_Redimencionar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu_RedimencionarMouseClicked(evt);
+            }
+        });
+        jMenu_Redimencionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu_RedimencionarActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jMenu_Redimencionar);
+
+        jMenu_Fechar.setText("X");
+        jMenu_Fechar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu_FecharMouseClicked(evt);
+            }
+        });
+        jMenu_Fechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu_FecharActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jMenu_Fechar);
 
         setJMenuBar(jMenuBar1);
 
@@ -214,7 +258,7 @@ public class telaHome extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(584, 416));
+        setSize(new java.awt.Dimension(455, 377));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -228,7 +272,7 @@ public class telaHome extends javax.swing.JFrame {
                telaGerenciarFuncionarios criarFunc = new telaGerenciarFuncionarios();
                criarFunc.setVisible(true);
                jDesktopPane1.add(criarFunc);
-               jTabbedPane1.addTab("Criar Funcionario", criarFunc);
+               jTabbedPane1.addTab("Gerencias Funcionarios", criarFunc);
                
             }else{
                 JOptionPane.showMessageDialog(null, "Você não tem autorização para esta função");
@@ -263,7 +307,7 @@ public class telaHome extends javax.swing.JFrame {
                jTabbedPane1.addTab("Gerenciar Produtos", gerenciarProdutos);
                
             }else{
-                JOptionPane.showMessageDialog(null, "Você não tem autorização para esta função");
+                JOptionPane.showMessageDialog(null, "Você nãinitComponents();o tem autorização para esta função");
             }                
 
         } catch (SQLException ex) {
@@ -280,9 +324,10 @@ public class telaHome extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        conex.desconecta();
+        dispose();
         telaTrocaSenha tsenha = new telaTrocaSenha();
         tsenha.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -294,9 +339,9 @@ public class telaHome extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         conex.desconecta();
+        dispose();
         telaLogin tlogin = new telaLogin();
         tlogin.setVisible(true);
-        System.exit(0);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -308,6 +353,31 @@ public class telaHome extends javax.swing.JFrame {
         jTabbedPane1.setSize(772, 366);
         //tentradasaida.setSize(772, 366);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenu_FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu_FecharActionPerformed
+    }//GEN-LAST:event_jMenu_FecharActionPerformed
+
+    private void jMenu_MinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu_MinimizarActionPerformed
+    }//GEN-LAST:event_jMenu_MinimizarActionPerformed
+
+    private void jMenu_RedimencionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu_RedimencionarActionPerformed
+    }//GEN-LAST:event_jMenu_RedimencionarActionPerformed
+
+    private void jMenu_FecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu_FecharMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jMenu_FecharMouseClicked
+
+    private void jMenu_RedimencionarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu_RedimencionarMouseClicked
+        if(getExtendedState() == java.awt.Frame.MAXIMIZED_BOTH) {
+            this.setSize(800,600);
+        } else {
+            setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+        }
+    }//GEN-LAST:event_jMenu_RedimencionarMouseClicked
+
+    private void jMenu_MinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu_MinimizarMouseClicked
+        this.setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_jMenu_MinimizarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -369,6 +439,9 @@ public class telaHome extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemControleDeMaterial;
     private javax.swing.JMenuItem jMenuItemGerenciarProdutos;
     private javax.swing.JMenuItem jMenuItem_CriarUsuario;
+    private javax.swing.JMenu jMenu_Fechar;
+    private javax.swing.JMenu jMenu_Minimizar;
+    private javax.swing.JMenu jMenu_Redimencionar;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }

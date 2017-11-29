@@ -69,7 +69,8 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
         jButtonRemover = new javax.swing.JButton();
         jButtonLimpar = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+
+        setTitle("Tirar Pedido");
 
         jPanel2.setBorder(new javax.swing.border.MatteBorder(null));
 
@@ -273,8 +274,6 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
                             .addComponent(jButtonEditar)))))
         );
 
-        jLabel1.setText("Tirar Pedido");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -284,9 +283,6 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(164, 164, 164)
-                        .addComponent(jLabel1))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -294,8 +290,6 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -430,7 +424,6 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButtonRemover;
     private javax.swing.JComboBox<String> jComboBoxTipodoProduto;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
