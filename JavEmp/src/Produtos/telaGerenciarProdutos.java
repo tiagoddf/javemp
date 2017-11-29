@@ -42,135 +42,22 @@ public class telaGerenciarProdutos extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jButtonEnviar = new javax.swing.JButton();
-        jTextFieldId = new javax.swing.JTextField();
-        jComboBoxTipoProduto = new javax.swing.JComboBox<>();
-        jTextFieldNomeProduto = new javax.swing.JTextField();
-        jTextFieldValor = new javax.swing.JTextField();
-        jTextFieldEstoque = new javax.swing.JTextField();
-        jButtonDeletar = new javax.swing.JButton();
         jComboBoxTipoDoProduto = new javax.swing.JComboBox<>();
         jTextFieldPesquisar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableProdutos = new javax.swing.JTable();
+        jButtonDeletar = new javax.swing.JButton();
+        jButtonEnviar = new javax.swing.JButton();
+        jTextFieldEstoque = new javax.swing.JTextField();
+        jTextFieldValor = new javax.swing.JTextField();
+        jComboBoxTipoProduto = new javax.swing.JComboBox<>();
+        jTextFieldId = new javax.swing.JTextField();
+        jTextFieldNomeProduto = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setClosable(true);
-
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel1.setText("Gerenciar Produtos");
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jButtonEnviar.setText("Enviar");
-        jButtonEnviar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEnviarActionPerformed(evt);
-            }
-        });
-
-        jTextFieldId.setEnabled(false);
-
-        jComboBoxTipoProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hidráulicos", "Ferragens e Ferramentas", "Tubos", "Fabricantes", "Tintas e Abrasivos", "Ferramentas Manuais", "Material Elétrico" }));
-        jComboBoxTipoProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxTipoProdutoActionPerformed(evt);
-            }
-        });
-
-        jTextFieldNomeProduto.setText("Nome do Produto");
-        jTextFieldNomeProduto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextFieldNomeProdutoMouseClicked(evt);
-            }
-        });
-        jTextFieldNomeProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNomeProdutoActionPerformed(evt);
-            }
-        });
-        jTextFieldNomeProduto.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextFieldNomeProdutoKeyPressed(evt);
-            }
-        });
-
-        jTextFieldValor.setText("R$");
-        jTextFieldValor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextFieldValorMouseClicked(evt);
-            }
-        });
-        jTextFieldValor.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextFieldValorKeyPressed(evt);
-            }
-        });
-
-        jTextFieldEstoque.setText("Quant.");
-        jTextFieldEstoque.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextFieldEstoqueMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jTextFieldEstoqueMouseEntered(evt);
-            }
-        });
-        jTextFieldEstoque.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextFieldEstoqueKeyPressed(evt);
-            }
-        });
-
-        jButtonDeletar.setText("Deletar");
-        jButtonDeletar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDeletarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldNomeProduto))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jComboBoxTipoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldValor, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextFieldEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonDeletar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBoxTipoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jButtonEnviar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+        setResizable(true);
+        setTitle("Gerenciar Produtos");
 
         jComboBoxTipoDoProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Hidráulicos", "Ferragens e Ferramentas", "Tubos", "Fabricantes", "Tintas e Abrasivos", "Ferramentas Manuais", "Material Elétrico" }));
 
@@ -198,122 +85,134 @@ public class telaGerenciarProdutos extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTableProdutos);
 
+        jButtonDeletar.setText("Deletar");
+        jButtonDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeletarActionPerformed(evt);
+            }
+        });
+
+        jButtonEnviar.setText("Enviar");
+        jButtonEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEnviarActionPerformed(evt);
+            }
+        });
+
+        jTextFieldEstoque.setText("Quant.");
+        jTextFieldEstoque.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldEstoqueMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jTextFieldEstoqueMouseEntered(evt);
+            }
+        });
+        jTextFieldEstoque.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldEstoqueKeyPressed(evt);
+            }
+        });
+
+        jTextFieldValor.setText("R$");
+        jTextFieldValor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldValorMouseClicked(evt);
+            }
+        });
+        jTextFieldValor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldValorKeyPressed(evt);
+            }
+        });
+
+        jComboBoxTipoProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hidráulicos", "Ferragens e Ferramentas", "Tubos", "Fabricantes", "Tintas e Abrasivos", "Ferramentas Manuais", "Material Elétrico" }));
+        jComboBoxTipoProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxTipoProdutoActionPerformed(evt);
+            }
+        });
+
+        jTextFieldId.setEnabled(false);
+
+        jTextFieldNomeProduto.setText("Nome do Produto");
+        jTextFieldNomeProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldNomeProdutoMouseClicked(evt);
+            }
+        });
+        jTextFieldNomeProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNomeProdutoActionPerformed(evt);
+            }
+        });
+        jTextFieldNomeProduto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldNomeProdutoKeyPressed(evt);
+            }
+        });
+
+        jButton1.setText("Novo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldNomeProduto))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jComboBoxTipoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldValor, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextFieldPesquisar)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxTipoDoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                                .addComponent(jButtonDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButtonEnviar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(jLabel1)))
+                        .addComponent(jTextFieldPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxTipoDoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1)
+                    .addComponent(jButtonDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxTipoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonEnviar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxTipoDoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setBounds(0, 0, 489, 417);
+        setBounds(0, 0, 464, 367);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
-        if(flag == 1){
-            mod.setNome(jTextFieldNomeProduto.getText());
-            mod.setTipo((String) jComboBoxTipoProduto.getSelectedItem());
-            mod.setValor(Double.parseDouble(jTextFieldValor.getText()));
-            mod.setEstoque(Integer.parseInt(jTextFieldEstoque.getText()));
-            control.Salvar(mod);
-            preencherTabela("select *from produtos order by nome");
-        }else{
-            mod.setNome(jTextFieldNomeProduto.getText());
-            mod.setTipo((String) jComboBoxTipoProduto.getSelectedItem());
-            mod.setValor(Double.parseDouble(jTextFieldValor.getText()));
-            mod.setEstoque(Integer.parseInt(jTextFieldEstoque.getText()));
-            mod.setId(Integer.parseInt(jTextFieldId.getText()));
-            control.editar(mod);
-            preencherTabela("select *from produtos order by nome");
-
-        }
-    }//GEN-LAST:event_jButtonEnviarActionPerformed
-
-    private void jComboBoxTipoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxTipoProdutoActionPerformed
-
-    private void jTextFieldNomeProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldNomeProdutoMouseClicked
-        if(jTextFieldNomeProduto.getText().equals("Nome do Produto")){
-            jTextFieldNomeProduto.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldNomeProdutoMouseClicked
-
-    private void jTextFieldNomeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeProdutoActionPerformed
-
-    }//GEN-LAST:event_jTextFieldNomeProdutoActionPerformed
-
-    private void jTextFieldNomeProdutoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomeProdutoKeyPressed
-        if(jTextFieldNomeProduto.getText().equals("Nome do Produto")){
-            jTextFieldNomeProduto.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldNomeProdutoKeyPressed
-
-    private void jTextFieldValorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldValorMouseClicked
-        if(jTextFieldValor.getText().equals("R$")){
-            jTextFieldValor.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldValorMouseClicked
-
-    private void jTextFieldValorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldValorKeyPressed
-        if(jTextFieldValor.getText().equals("R$")){
-            jTextFieldValor.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldValorKeyPressed
-
-    private void jTextFieldEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldEstoqueMouseClicked
-        if(jTextFieldEstoque.getText().equals("Quant.")){
-            jTextFieldEstoque.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldEstoqueMouseClicked
-
-    private void jTextFieldEstoqueMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldEstoqueMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldEstoqueMouseEntered
-
-    private void jTextFieldEstoqueKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldEstoqueKeyPressed
-        if(jTextFieldEstoque.getText().equals("Quant.")){
-            jTextFieldEstoque.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldEstoqueKeyPressed
-
-    private void jButtonDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeletarActionPerformed
-        int resposta =0;
-        resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente excluir?");
-        if(resposta ==JOptionPane.YES_OPTION){
-            mod.setId(Integer.parseInt(jTextFieldId.getText()));
-            control.excluir(mod);
-            preencherTabela("select *from produtos order by tipo");
-        }
-    }//GEN-LAST:event_jButtonDeletarActionPerformed
 
     private void jTextFieldPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarActionPerformed
         mod.setPesquisa(jTextFieldPesquisar.getText());
@@ -346,6 +245,84 @@ public class telaGerenciarProdutos extends javax.swing.JInternalFrame {
         conex.desconecta();
 
     }//GEN-LAST:event_jTableProdutosMouseClicked
+
+    private void jButtonDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeletarActionPerformed
+        int resposta =0;
+        resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente excluir?");
+        if(resposta ==JOptionPane.YES_OPTION){
+            mod.setId(Integer.parseInt(jTextFieldId.getText()));
+            control.excluir(mod);
+            preencherTabela("select *from produtos order by tipo");
+        }
+    }//GEN-LAST:event_jButtonDeletarActionPerformed
+
+    private void jTextFieldEstoqueKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldEstoqueKeyPressed
+        if(jTextFieldEstoque.getText().equals("Quant.")){
+            jTextFieldEstoque.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldEstoqueKeyPressed
+
+    private void jTextFieldEstoqueMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldEstoqueMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldEstoqueMouseEntered
+
+    private void jTextFieldEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldEstoqueMouseClicked
+        if(jTextFieldEstoque.getText().equals("Quant.")){
+            jTextFieldEstoque.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldEstoqueMouseClicked
+
+    private void jTextFieldValorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldValorKeyPressed
+        if(jTextFieldValor.getText().equals("R$")){
+            jTextFieldValor.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldValorKeyPressed
+
+    private void jTextFieldValorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldValorMouseClicked
+        if(jTextFieldValor.getText().equals("R$")){
+            jTextFieldValor.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldValorMouseClicked
+
+    private void jTextFieldNomeProdutoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomeProdutoKeyPressed
+        if(jTextFieldNomeProduto.getText().equals("Nome do Produto")){
+            jTextFieldNomeProduto.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldNomeProdutoKeyPressed
+
+    private void jTextFieldNomeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeProdutoActionPerformed
+
+    }//GEN-LAST:event_jTextFieldNomeProdutoActionPerformed
+
+    private void jTextFieldNomeProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldNomeProdutoMouseClicked
+        if(jTextFieldNomeProduto.getText().equals("Nome do Produto")){
+            jTextFieldNomeProduto.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldNomeProdutoMouseClicked
+
+    private void jComboBoxTipoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxTipoProdutoActionPerformed
+
+    private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
+        if(flag == 1){
+            mod.setNome(jTextFieldNomeProduto.getText());
+            mod.setTipo((String) jComboBoxTipoProduto.getSelectedItem());
+            mod.setValor(Double.parseDouble(jTextFieldValor.getText()));
+            mod.setEstoque(Integer.parseInt(jTextFieldEstoque.getText()));
+            control.Salvar(mod);
+            preencherTabela("select *from produtos order by nome");
+        }else{
+            mod.setNome(jTextFieldNomeProduto.getText());
+            mod.setTipo((String) jComboBoxTipoProduto.getSelectedItem());
+            mod.setValor(Double.parseDouble(jTextFieldValor.getText()));
+            mod.setEstoque(Integer.parseInt(jTextFieldEstoque.getText()));
+            mod.setId(Integer.parseInt(jTextFieldId.getText()));
+            control.editar(mod);
+            preencherTabela("select *from produtos order by nome");
+
+        }
+    }//GEN-LAST:event_jButtonEnviarActionPerformed
 public void preencherTabela(String Sql){
           ArrayList dados = new ArrayList();
           String [] colunas = new String []{"ID","Nome","Tipo","Valor","Estoque"};
@@ -380,12 +357,11 @@ public void preencherTabela(String Sql){
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonDeletar;
     private javax.swing.JButton jButtonEnviar;
     private javax.swing.JComboBox<String> jComboBoxTipoDoProduto;
     private javax.swing.JComboBox<String> jComboBoxTipoProduto;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableProdutos;
     private javax.swing.JTextField jTextFieldEstoque;

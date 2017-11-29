@@ -88,7 +88,6 @@ public class telaGerenciarFuncionarios extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jComboBox = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -109,10 +108,7 @@ public class telaGerenciarFuncionarios extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
 
-        setClosable(true);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Gerenciar Funcionarios");
+        setTitle("Gerenciar Funcionarios");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -361,116 +357,65 @@ public class telaGerenciarFuncionarios extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 8, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxActionPerformed
+    private void jTextField_RamalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField_RamalMouseClicked
+        if(jTextField_Ramal.getText().equals("Ramal")){
+            jTextField_Ramal.setText("");
+        }
+    }//GEN-LAST:event_jTextField_RamalMouseClicked
 
-    private void jTableUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableUsuariosMouseClicked
-        String usuario =""+jTableUsuarios.getValueAt(jTableUsuarios.getSelectedRow(), 1);
-        conex.conectar();
-        conex.executaSql("select *from funcionarios where usuario='"+usuario+"'");
-        try {
-            conex.rs.first();
-            jTextFieldId.setText(String.valueOf(conex.rs.getInt("id")));
-            jTextFieldNome.setText(conex.rs.getString("usuario"));
-            jTextFieldSenha.setText(conex.rs.getString("senha"));
-            jComboBox.setSelectedItem(conex.rs.getString("cargo"));
-            jTextField_Ramal.setText(String.valueOf(conex.rs.getInt("ramal")));
-            jTextField_NomeCompleto.setText(conex.rs.getString("nomecompleto"));
+    private void jTextField_NomeCompletoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField_NomeCompletoMouseClicked
+        if(jTextField_NomeCompleto.getText().equals("Nome Completo")){
+            jTextField_NomeCompleto.setText("");
+        }
+    }//GEN-LAST:event_jTextField_NomeCompletoMouseClicked
 
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        flag = 2;
+        liberarCampos();
+        habilitarBotoes();
+        jTextFieldSenha2.setEnabled(false);
+        jButtonEditar.setEnabled(false);
+        jButtonExcluir.setEnabled(false);
+    }//GEN-LAST:event_jButtonEditarActionPerformed
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        int resposta = 0;
+        resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente excluir?");
+        if(resposta ==JOptionPane.YES_OPTION){
+            mod.setId(Integer.parseInt(jTextFieldId.getText()));
+            control.excluir(mod);
+            preencherTabela("select *from funcionarios order by usuario");
             desabilitarBotoes();
-            bloquearCampos();
-
-            jButtonNovo.setEnabled(true);
-            jButtonCancelar.setEnabled(true);
-            jButtonEditar.setEnabled(true);
-            jButtonExcluir.setEnabled(true);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao selecionar os dados "+ex);
         }
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
 
-        conex.desconecta();
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        limparCampos();
+        bloquearCampos();
+        desabilitarBotoes();
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
 
-    }//GEN-LAST:event_jTableUsuariosMouseClicked
-
-    private void jTextFieldSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldSenhaMouseClicked
-        if(jTextFieldSenha.getText().equals("Senha")){
-            jTextFieldSenha.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldSenhaMouseClicked
-
-    private void jTextFieldSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSenhaKeyPressed
-        if(jTextFieldSenha.getText().equals("Senha")){
-            jTextFieldSenha.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldSenhaKeyPressed
-
-    private void jTextFieldNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldNomeMouseClicked
-        if(jTextFieldNome.getText().equals("Usuário")){
-            jTextFieldNome.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldNomeMouseClicked
-
-    private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNomeActionPerformed
-
-    private void jTextFieldNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomeKeyPressed
-        if(jTextFieldNome.getText().equals("Usuário")){
-            jTextFieldNome.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldNomeKeyPressed
-
-    private void jTextFieldSenha2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldSenha2MouseClicked
-        if(jTextFieldSenha2.getText().equals("Confirmar Senha")){
-            jTextFieldSenha2.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldSenha2MouseClicked
-
-    private void jTextFieldSenha2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSenha2KeyPressed
-        if(jTextFieldSenha2.getText().equals("Confirmar Senha")){
-            jTextFieldSenha2.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldSenha2KeyPressed
-
-    private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
-        mod.setPesquisa(jTextFieldPesquisar.getText());
-        control.buscar(mod);
-        preencherTabela("select *from funcionarios where usuario like'%" + mod.getPesquisa()+ "%'");
-    }//GEN-LAST:event_jButtonPesquisarActionPerformed
-
-    private void jTextFieldPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarActionPerformed
-        if(jTextFieldPesquisar.getText().equals("")){
-        }
-        else{
-            mod.setPesquisa(jTextFieldPesquisar.getText());
-            control.buscar(mod);
-            preencherTabela("select *from funcionarios where usuario like'%" + mod.getPesquisa()+ "%'");
-        }
-    }//GEN-LAST:event_jTextFieldPesquisarActionPerformed
+    private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
+        habilitarBotoes();
+        liberarCampos();
+        infoCampos();
+        flag =1;
+    }//GEN-LAST:event_jButtonNovoActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
 
@@ -506,52 +451,93 @@ public class telaGerenciarFuncionarios extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
-    private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
-        habilitarBotoes();
-        liberarCampos();
-        infoCampos();
-        flag =1;
-    }//GEN-LAST:event_jButtonNovoActionPerformed
+    private void jTextFieldPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarActionPerformed
+        if(jTextFieldPesquisar.getText().equals("")){
+        }
+        else{
+            mod.setPesquisa(jTextFieldPesquisar.getText());
+            control.buscar(mod);
+            preencherTabela("select *from funcionarios where usuario like'%" + mod.getPesquisa()+ "%'");
+        }
+    }//GEN-LAST:event_jTextFieldPesquisarActionPerformed
 
-    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        limparCampos();
-        bloquearCampos();
-        desabilitarBotoes();
-    }//GEN-LAST:event_jButtonCancelarActionPerformed
+    private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
+        mod.setPesquisa(jTextFieldPesquisar.getText());
+        control.buscar(mod);
+        preencherTabela("select *from funcionarios where usuario like'%" + mod.getPesquisa()+ "%'");
+    }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
-    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        int resposta = 0;
-        resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente excluir?");
-        if(resposta ==JOptionPane.YES_OPTION){
-            mod.setId(Integer.parseInt(jTextFieldId.getText()));
-            control.excluir(mod);
-            preencherTabela("select *from funcionarios order by usuario");
+    private void jTextFieldSenha2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSenha2KeyPressed
+        if(jTextFieldSenha2.getText().equals("Confirmar Senha")){
+            jTextFieldSenha2.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldSenha2KeyPressed
+
+    private void jTextFieldSenha2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldSenha2MouseClicked
+        if(jTextFieldSenha2.getText().equals("Confirmar Senha")){
+            jTextFieldSenha2.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldSenha2MouseClicked
+
+    private void jTextFieldNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomeKeyPressed
+        if(jTextFieldNome.getText().equals("Usuário")){
+            jTextFieldNome.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldNomeKeyPressed
+
+    private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomeActionPerformed
+
+    private void jTextFieldNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldNomeMouseClicked
+        if(jTextFieldNome.getText().equals("Usuário")){
+            jTextFieldNome.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldNomeMouseClicked
+
+    private void jTextFieldSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSenhaKeyPressed
+        if(jTextFieldSenha.getText().equals("Senha")){
+            jTextFieldSenha.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldSenhaKeyPressed
+
+    private void jTextFieldSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldSenhaMouseClicked
+        if(jTextFieldSenha.getText().equals("Senha")){
+            jTextFieldSenha.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldSenhaMouseClicked
+
+    private void jTableUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableUsuariosMouseClicked
+        String usuario =""+jTableUsuarios.getValueAt(jTableUsuarios.getSelectedRow(), 1);
+        conex.conectar();
+        conex.executaSql("select *from funcionarios where usuario='"+usuario+"'");
+        try {
+            conex.rs.first();
+            jTextFieldId.setText(String.valueOf(conex.rs.getInt("id")));
+            jTextFieldNome.setText(conex.rs.getString("usuario"));
+            jTextFieldSenha.setText(conex.rs.getString("senha"));
+            jComboBox.setSelectedItem(conex.rs.getString("cargo"));
+            jTextField_Ramal.setText(String.valueOf(conex.rs.getInt("ramal")));
+            jTextField_NomeCompleto.setText(conex.rs.getString("nomecompleto"));
+
             desabilitarBotoes();
+            bloquearCampos();
+
+            jButtonNovo.setEnabled(true);
+            jButtonCancelar.setEnabled(true);
+            jButtonEditar.setEnabled(true);
+            jButtonExcluir.setEnabled(true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao selecionar os dados "+ex);
         }
 
-    }//GEN-LAST:event_jButtonExcluirActionPerformed
+        conex.desconecta();
+    }//GEN-LAST:event_jTableUsuariosMouseClicked
 
-    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-        flag = 2;
-        liberarCampos();
-        habilitarBotoes();
-        jTextFieldSenha2.setEnabled(false);
-        jButtonEditar.setEnabled(false);
-        jButtonExcluir.setEnabled(false);
-    }//GEN-LAST:event_jButtonEditarActionPerformed
-
-    private void jTextField_NomeCompletoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField_NomeCompletoMouseClicked
-        if(jTextField_NomeCompleto.getText().equals("Nome Completo")){
-            jTextField_NomeCompleto.setText("");
-        }
-    }//GEN-LAST:event_jTextField_NomeCompletoMouseClicked
-
-    private void jTextField_RamalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField_RamalMouseClicked
-        if(jTextField_Ramal.getText().equals("Ramal")){
-            jTextField_Ramal.setText("");
-        }
-    }//GEN-LAST:event_jTextField_RamalMouseClicked
-     public void preencherTabela(String Sql){
+    private void jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxActionPerformed
+         public void preencherTabela(String Sql){
           ArrayList dados = new ArrayList();
           String [] colunas = new String []{"ID","Usuario","Senha","Cargo","Ramal","Nome Completo"};
           conex.conectar();
@@ -589,7 +575,6 @@ public class telaGerenciarFuncionarios extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JComboBox<String> jComboBox;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

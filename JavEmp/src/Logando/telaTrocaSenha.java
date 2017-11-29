@@ -208,7 +208,9 @@ public class telaTrocaSenha extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_ConfirmarActionPerformed
 
     private void jButton_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarActionPerformed
-        // TODO add your handling code here:
+        telaLogin tlogin = new telaLogin();
+        tlogin.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton_CancelarActionPerformed
 
     /**

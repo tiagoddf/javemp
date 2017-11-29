@@ -66,6 +66,7 @@ public class modeloTabelaCarrinho extends AbstractTableModel {
     }
     public void addRow(atelaTirarPedido p){
         this.linhas.add(p);
+        this.linhas.coluns(p);
     }
     
   
