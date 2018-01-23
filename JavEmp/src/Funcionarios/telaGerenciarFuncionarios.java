@@ -11,9 +11,7 @@ package Funcionarios;
  */
 
 import DB.ConnectMYSQL;
-import Funcionarios.beansFuncionarios;
-import Funcionarios.daoFuncionarios;
-import Funcionarios.modeloTabela;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -418,7 +416,6 @@ public class telaGerenciarFuncionarios extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-
         if(flag ==1){
             if(jTextFieldSenha.getText().equals(jTextFieldSenha2.getText())){
                 mod.setUsuario(jTextFieldNome.getText());
@@ -566,6 +563,9 @@ public class telaGerenciarFuncionarios extends javax.swing.JInternalFrame {
           jTableUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
           conex.desconecta();
       }
+         
+         
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonEditar;

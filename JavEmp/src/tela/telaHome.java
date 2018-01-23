@@ -78,6 +78,7 @@ public class telaHome extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItemEntradaESaída = new javax.swing.JMenuItem();
         jMenu_Minimizar = new javax.swing.JMenu();
         jMenu_Redimencionar = new javax.swing.JMenu();
         jMenu_Fechar = new javax.swing.JMenu();
@@ -191,10 +192,23 @@ public class telaHome extends javax.swing.JFrame {
         jMenuAdmin.add(jMenuItem5);
 
         jMenuItem7.setText("Logs Movimentação");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenuAdmin.add(jMenuItem7);
 
         jMenuItem9.setText("Estatísticas de Venda");
         jMenuAdmin.add(jMenuItem9);
+
+        jMenuItemEntradaESaída.setText("Entrada e Saída");
+        jMenuItemEntradaESaída.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemEntradaESaídaActionPerformed(evt);
+            }
+        });
+        jMenuAdmin.add(jMenuItemEntradaESaída);
 
         jMenuBar1.add(jMenuAdmin);
 
@@ -379,6 +393,17 @@ public class telaHome extends javax.swing.JFrame {
         this.setState(Frame.ICONIFIED);
     }//GEN-LAST:event_jMenu_MinimizarMouseClicked
 
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItemEntradaESaídaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEntradaESaídaActionPerformed
+        telaEntradaSaida entradaSaida = new telaEntradaSaida();
+        entradaSaida.setVisible(true);
+        jDesktopPane1.add(entradaSaida);
+        jTabbedPane1.addTab("Entrada e Saida", entradaSaida);
+    }//GEN-LAST:event_jMenuItemEntradaESaídaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -437,6 +462,7 @@ public class telaHome extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jMenuItemControleDeMaterial;
+    private javax.swing.JMenuItem jMenuItemEntradaESaída;
     private javax.swing.JMenuItem jMenuItemGerenciarProdutos;
     private javax.swing.JMenuItem jMenuItem_CriarUsuario;
     private javax.swing.JMenu jMenu_Fechar;

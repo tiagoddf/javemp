@@ -35,6 +35,7 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
      */
     public telaTirarPedido() {
         initComponents();
+        preencherTabelaProdutos("select *from produtos order by nome");
     }
 
     /**

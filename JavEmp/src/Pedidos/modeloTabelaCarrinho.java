@@ -64,9 +64,9 @@ public class modeloTabelaCarrinho extends AbstractTableModel {
         Object[] linha = (Object[])getLinhas().get(numLin);
         return linha[numCol];
     }
-    public void addRow(atelaTirarPedido p){
+public void addRow(telaTirarPedido p){//METODO CRIADO QUE O LUIZ NAO CONSEGUE ENCAIXAR EM UMA TABELA AI
         this.linhas.add(p);
-        this.linhas.coluns(p);
+  //      this.linhas.coluns(p);
     }
     
   
