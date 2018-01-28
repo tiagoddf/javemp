@@ -23,13 +23,15 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
     daoProdutos controlProdutos = new daoProdutos();
     ConnectMYSQL conex = new ConnectMYSQL();
     
-    String idProduto;
-    String nomeProduto;
-    String tipoProduto;
-    double valorProduto;
-    int    estoqueProduto;
-    int    quantidadeProduto;
-    int x  = 10;
+    
+    //transformei as variaveis em arrays p criar 1 tabela e não só 1 coluna da tabela
+    String[] idProduto;
+    String[] nomeProduto;
+    String[] tipoProduto;
+    double[] valorProduto;
+    int[]    estoqueProduto;
+    int []   quantidadeProduto;
+    int x = 1;   //variavel responsavel p mexer na parte do arrey certa
     /**
      * Creates new form telaTirarPedido
      */
@@ -309,11 +311,12 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
         try {
 
             conex.rs.first();
-            idProduto      = String.valueOf(conex.rs.getInt("id"));
-            nomeProduto    = (conex.rs.getString("nome"));
-            tipoProduto    = (conex.rs.getString("tipo"));
-            valorProduto   = (double) (conex.rs.getDouble("valor"));
-            estoqueProduto = (conex.rs.getInt("estoque"));
+            //transformei antes as variaveis em arrays
+            idProduto[x]      = String.valueOf(conex.rs.getInt("id"));
+            nomeProduto[x]    = (conex.rs.getString("nome"));
+            tipoProduto[x]    = (conex.rs.getString("tipo"));
+            valorProduto[x]   = (double) (conex.rs.getDouble("valor"));
+            estoqueProduto[x] = (conex.rs.getInt("estoque"));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao selecionar os dados "+ex);
         }
@@ -353,10 +356,12 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
           jTableProdutos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
           conex.desconecta();
       }
+    
         public void preencherTabelaCarrinho(){
           ArrayList dados = new ArrayList();
           String [] colunas = new String []{"Nome","Tipo","Quantidade","Preço"};
-          dados.add(new Object[]{nomeProduto,tipoProduto,quantidadeProduto,valorProduto});
+          //não vai rodar a partirr daqui
+          dados.add(new Object[]{nomeProduto[x],tipoProduto[x],quantidadeProduto[x],valorProduto[x]});
           modeloTabela modelo = new modeloTabela(dados, colunas);
           jTableCarrinho.setModel(modelo);
           jTableCarrinho.getColumnModel().getColumn(0).setPreferredWidth(110);
@@ -386,14 +391,14 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        if(nomeProduto != ""){
+        if(nomeProduto[x] != ""){
             if(jTextFieldQuantidade.getText().equals("Quantidade")){
                 JOptionPane.showMessageDialog(null, nomeProduto);
                 JOptionPane.showMessageDialog(null, valorProduto);
                 preencherTabelaCarrinho();
             }else{
-                quantidadeProduto = Integer.parseInt(jTextFieldQuantidade.getText());
-                valorProduto = valorProduto * quantidadeProduto;
+                quantidadeProduto[x] = Integer.parseInt(jTextFieldQuantidade.getText());
+                valorProduto[x] = valorProduto[x] * quantidadeProduto[x];
                 JOptionPane.showMessageDialog(null, valorProduto);
                 preencherTabelaCarrinho();
 

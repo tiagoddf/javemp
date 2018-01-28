@@ -88,8 +88,6 @@ public class jframe extends javax.swing.JFrame {
         internalFrame internal = new internalFrame();
         jDesktopPane.add(internal);
         internal.setVisible(true);
-        
-        
 
         
         
