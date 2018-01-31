@@ -30,12 +30,13 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
     String tipoProduto;
     double valorProduto;
     int    estoqueProduto;
-    int    quantidadeProduto;
+    int    quantidadeProduto = 1;
     carrinhoTableModel tableModel = new carrinhoTableModel();
     public telaTirarPedido() {
         initComponents();
         preencherTabelaProdutos("select *from produtos order by nome");
         jTable_Carrinho.setModel(tableModel);
+
     }
 
     /**
@@ -55,7 +56,8 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
         jComboBoxTipodoProduto = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jTextFieldQuantidade = new javax.swing.JTextField();
+        jFormattedTextFieldQuantidade = new javax.swing.JFormattedTextField();
+        jLabel1 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -112,17 +114,20 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
             }
         });
 
-        jTextFieldQuantidade.setText("Quantidade");
-        jTextFieldQuantidade.addMouseListener(new java.awt.event.MouseAdapter() {
+        jFormattedTextFieldQuantidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jFormattedTextFieldQuantidade.setText("1");
+        jFormattedTextFieldQuantidade.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextFieldQuantidadeMouseClicked(evt);
+                jFormattedTextFieldQuantidadeMouseClicked(evt);
             }
         });
-        jTextFieldQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
+        jFormattedTextFieldQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextFieldQuantidadeKeyPressed(evt);
+                jFormattedTextFieldQuantidadeKeyPressed(evt);
             }
         });
+
+        jLabel1.setText("Quantidade:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -142,10 +147,13 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBoxTipodoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTextFieldQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jFormattedTextFieldQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -163,12 +171,18 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jTextFieldQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(jLabel1)
+                    .addComponent(jFormattedTextFieldQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(1, 1, 1))
         );
 
         jButton5.setText("Finalizar Pedido");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
 
@@ -204,6 +218,11 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
         });
 
         jButtonEditar.setText("Editar QTD");
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
 
         jTable_Carrinho.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -225,6 +244,19 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButtonEditar)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -244,19 +276,7 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(21, 21, 21)
                                 .addComponent(jLabel3))
-                            .addComponent(jTextFieldSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButtonEditar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTextFieldSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -291,11 +311,11 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -371,26 +391,6 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
             p.setQtd(quantidadeProduto);
             p.setValor(valorProduto);
             tableModel.addRow(p);
-          /* luizlixo
-          ArrayList dados = new ArrayList();
-          String [] colunas = new String []{"Nome","Tipo","Quantidade","Preço"};
-          //não vai rodar a partirr daqui
-          dados.add(new Object[]{nomeProduto,tipoProduto,quantidadeProduto,valorProduto});
-          modeloTabela modelo = new modeloTabela(dados, colunas);
-          jTable_Carrinho.setModel(modelo);
-          jTable_Carrinho.getColumnModel().getColumn(0).setPreferredWidth(110);
-          jTable_Carrinho.getColumnModel().getColumn(0).setResizable(false);
-          jTable_Carrinho.getColumnModel().getColumn(1).setPreferredWidth(110);
-          jTable_Carrinho.getColumnModel().getColumn(1).setResizable(false);
-          jTable_Carrinho.getColumnModel().getColumn(2).setPreferredWidth(43);
-          jTable_Carrinho.getColumnModel().getColumn(2).setResizable(false);
-          jTable_Carrinho.getColumnModel().getColumn(3).setPreferredWidth(80);
-          jTable_Carrinho.getColumnModel().getColumn(3).setResizable(false);
-          jTable_Carrinho.getTableHeader().setReorderingAllowed(false);
-          jTable_Carrinho.setAutoResizeMode(jTable_Carrinho.AUTO_RESIZE_OFF);
-          jTable_Carrinho.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-          conex.desconecta();
-        */
        }
     
     private void jTextFieldPesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarProdutoActionPerformed
@@ -406,32 +406,18 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        if(nomeProduto != ""){
-            if(jTextFieldQuantidade.getText().equals("Quantidade")){
-                JOptionPane.showMessageDialog(null, nomeProduto);
-                JOptionPane.showMessageDialog(null, valorProduto);
+        if(nomeProduto != "" ){
+            if(jFormattedTextFieldQuantidade.getText().equals("1")){
                 preencherTabelaCarrinho();
             }else{
-                quantidadeProduto = Integer.parseInt(jTextFieldQuantidade.getText());
+                quantidadeProduto = Integer.parseInt(jFormattedTextFieldQuantidade.getText());
                 valorProduto = valorProduto * quantidadeProduto;
-                JOptionPane.showMessageDialog(null, valorProduto);
                 preencherTabelaCarrinho();
 
             }
+            jFormattedTextFieldQuantidade.setText("1");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextFieldQuantidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldQuantidadeMouseClicked
-        if(jTextFieldQuantidade.getText().equals("Quantidade")){
-            jTextFieldQuantidade.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldQuantidadeMouseClicked
-
-    private void jTextFieldQuantidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldQuantidadeKeyPressed
-        if(jTextFieldQuantidade.getText().equals("Quantidade")){
-            jTextFieldQuantidade.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldQuantidadeKeyPressed
 
     private void jTextFieldSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSaldoActionPerformed
         // TODO add your handling code here:
@@ -442,10 +428,43 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonLimparActionPerformed
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
-        if(jTable_Carrinho.getSelectedRow() != -1){
+     if(jTable_Carrinho.getSelectedRow() != -1){
+        int resposta = 0;
+        resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente remover o item da compra?");
+        if(resposta ==JOptionPane.YES_OPTION){
             tableModel.removeRow(jTable_Carrinho.getSelectedRow());
-        }
+            }
+        }else{
+         JOptionPane.showMessageDialog(null, "Escolha o item que deseja remover da compra");
+     }
     }//GEN-LAST:event_jButtonRemoverActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        int resposta = 0;
+        resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja Finalizar o pedido?");
+        if(resposta ==JOptionPane.YES_OPTION){
+            
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEditarActionPerformed
+
+    private void jFormattedTextFieldQuantidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextFieldQuantidadeMouseClicked
+        // TODO add your handling code here:
+        if(jFormattedTextFieldQuantidade.getText().equals("1")){
+            jFormattedTextFieldQuantidade.setText("");
+        }
+    }//GEN-LAST:event_jFormattedTextFieldQuantidadeMouseClicked
+
+    private void jFormattedTextFieldQuantidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextFieldQuantidadeKeyPressed
+        // TODO add your handling code here:
+         if(jFormattedTextFieldQuantidade.getText().equals("1")){
+            jFormattedTextFieldQuantidade.setText("");
+        }
+    }//GEN-LAST:event_jFormattedTextFieldQuantidadeKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -455,6 +474,8 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButtonRemover;
     private javax.swing.JComboBox<String> jComboBoxTipodoProduto;
+    private javax.swing.JFormattedTextField jFormattedTextFieldQuantidade;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -469,7 +490,6 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTable_Carrinho;
     private javax.swing.JTextField jTextFieldNome;
     private javax.swing.JTextField jTextFieldPesquisarProduto;
-    private javax.swing.JTextField jTextFieldQuantidade;
     private javax.swing.JTextField jTextFieldSaldo;
     private javax.swing.JTextField jTextFieldValorAtual;
     // End of variables declaration//GEN-END:variables
