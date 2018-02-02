@@ -11,6 +11,8 @@ import Produtos.beansProdutos;
 import Produtos.daoProdutos;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 
@@ -170,10 +172,11 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jFormattedTextFieldQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jFormattedTextFieldQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1)))
                 .addGap(1, 1, 1))
         );
 
@@ -251,7 +254,7 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jButtonEditar)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButtonLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -449,7 +452,28 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-        // TODO add your handling code here:
+    /*    // TODO add your handling code here:
+    if(jTable_Carrinho.getSelectedRow() != -1){
+        int numero1 =Integer.parseInt((String) jTable1.getValueAt(x,y));
+             }*/
+    
+        String perguntaQuantidade;
+        
+        perguntaQuantidade = JOptionPane.showInputDialog(null, "Qual a quantidade?", JOptionPane.PLAIN_MESSAGE);
+        
+        try {
+            int estoque = 5000;
+            long quantidade = new Long(perguntaQuantidade);
+             if (quantidade > 0 && quantidade < estoque) {          
+                //caso seja true (Mudar a quantidade de acordo com a quantidade selecionada
+                
+                } else {
+                    JOptionPane.showMessageDialog(null, "estoque menor do que a mudança solicitada");
+            }
+             
+        } catch (NumberFormatException  exception) {
+            JOptionPane.showMessageDialog(null,"Apenas numeros são validos");
+     }    
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jFormattedTextFieldQuantidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextFieldQuantidadeMouseClicked
