@@ -106,6 +106,9 @@ public class telaGerenciarFuncionarios extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
 
+        setClosable(true);
+        setMaximizable(true);
+        setResizable(true);
         setTitle("Gerenciar Funcionarios");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));

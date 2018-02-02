@@ -13,8 +13,12 @@ import Logando.telaLogin;
 import Logando.telaTrocaSenha;
 import Pedidos.telaTirarPedido;
 import Produtos.telaGerenciarProdutos;
+import java.awt.Dimension;
 import java.awt.Frame;
+import java.beans.PropertyVetoException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -287,7 +291,13 @@ public class telaHome extends javax.swing.JFrame {
                criarFunc.setVisible(true);
                jDesktopPane1.add(criarFunc);
                jTabbedPane1.addTab("Gerencias Funcionarios", criarFunc);
-               
+                criarFunc.pack();
+                criarFunc.setMaximizable(true);
+                criarFunc.setVisible(true);
+                Dimension resolucao = this.getSize();
+                criarFunc.setSize(resolucao);
+                try { criarFunc.setMaximum(true); } catch (PropertyVetoException ex) { Logger.getLogger(telaHome.class.getName()).log(Level.SEVERE, null, ex); }
+
             }else{
                 JOptionPane.showMessageDialog(null, "Você não tem autorização para esta função");
             }                
@@ -363,9 +373,6 @@ public class telaHome extends javax.swing.JFrame {
         tentradasaida.setVisible(true);
         jDesktopPane1.add(tentradasaida);
         jTabbedPane1.addTab("Entrada e Saída", tentradasaida);
-        jDesktopPane1.setSize(772, 366);
-        jTabbedPane1.setSize(772, 366);
-        //tentradasaida.setSize(772, 366);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenu_FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu_FecharActionPerformed
