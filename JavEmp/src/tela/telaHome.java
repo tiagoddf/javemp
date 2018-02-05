@@ -19,6 +19,7 @@ import java.beans.PropertyVetoException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Box;
 import javax.swing.JOptionPane;
 
 /**
@@ -100,11 +101,11 @@ public class telaHome extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Arquivo");
@@ -216,6 +217,8 @@ public class telaHome extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuAdmin);
 
+        jMenuBar1.add(Box.createHorizontalGlue()); // espaçamento pra mover os itens abaixo pra direita
+
         jMenu_Minimizar.setText("-");
         jMenu_Minimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -276,7 +279,7 @@ public class telaHome extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(455, 377));
+        setSize(new java.awt.Dimension(441, 332));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

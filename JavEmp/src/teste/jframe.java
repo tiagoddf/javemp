@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Box;
 
 public class jframe extends javax.swing.JFrame {
     public jframe() {
@@ -25,9 +26,9 @@ public class jframe extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
+        jMenu_Minimizar = new javax.swing.JMenu();
+        jMenu_Redimencionar = new javax.swing.JMenu();
+        jMenu_Fechar = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -58,19 +59,21 @@ public class jframe extends javax.swing.JFrame {
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("-");
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(Box.createHorizontalGlue()); // espaçamento pra mover os itens abaixo pra direita
 
-        jMenu4.setText("[]");
-        jMenuBar1.add(jMenu4);
+        jMenu_Minimizar.setText("-");
+        jMenuBar1.add(jMenu_Minimizar);
 
-        jMenu5.setText("X");
-        jMenu5.addActionListener(new java.awt.event.ActionListener() {
+        jMenu_Redimencionar.setText("[]");
+        jMenuBar1.add(jMenu_Redimencionar);
+
+        jMenu_Fechar.setText("X");
+        jMenu_Fechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu5ActionPerformed(evt);
+                jMenu_FecharActionPerformed(evt);
             }
         });
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(jMenu_Fechar);
 
         setJMenuBar(jMenuBar1);
 
@@ -101,9 +104,9 @@ public class jframe extends javax.swing.JFrame {
         try { internal.setMaximum(true); } catch (PropertyVetoException ex) { Logger.getLogger(jframe.class.getName()).log(Level.SEVERE, null, ex); }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
+    private void jMenu_FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu_FecharActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jMenu5ActionPerformed
+    }//GEN-LAST:event_jMenu_FecharActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,10 +147,10 @@ public class jframe extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenu jMenu_Fechar;
+    private javax.swing.JMenu jMenu_Minimizar;
+    private javax.swing.JMenu jMenu_Redimencionar;
     // End of variables declaration//GEN-END:variables
 }
