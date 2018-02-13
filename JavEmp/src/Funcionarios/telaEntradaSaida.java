@@ -39,8 +39,8 @@ public class telaEntradaSaida extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField4 = new javax.swing.JTextField();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        jTextFieldPesquisar = new javax.swing.JTextField();
+        jComboBoxPesquisa = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
@@ -55,33 +55,46 @@ public class telaEntradaSaida extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonOk = new javax.swing.JButton();
+        jButtonEntrada = new javax.swing.JButton();
+        jButtonImprimir = new javax.swing.JButton();
+        jButtonParticipantes = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
+        jButtonSaida = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableFuncionarios = new javax.swing.JTable();
         jTextField5 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("Entrada e Saída");
         getContentPane().setLayout(null);
-        getContentPane().add(jTextField4);
-        jTextField4.setBounds(611, 319, 150, 20);
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuário", "Ramal", "Nome" }));
-        getContentPane().add(jComboBox4);
-        jComboBox4.setBounds(534, 317, 65, 24);
+        jTextFieldPesquisar.setEditable(false);
+        jTextFieldPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldPesquisarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextFieldPesquisar);
+        jTextFieldPesquisar.setBounds(640, 300, 150, 20);
+
+        jComboBoxPesquisa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "todos", "usuario", "ramal", "nome" }));
+        jComboBoxPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxPesquisaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBoxPesquisa);
+        jComboBoxPesquisa.setBounds(550, 300, 82, 24);
 
         jLabel7.setText("Foto-IMG");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(534, 196, 65, 115);
+        jLabel7.setBounds(560, 200, 65, 115);
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "(Todos)", "Copa", "Entrada Almoço", "Escritório", "Férias", "Foi embora", "Fora da mesa", "Licença", "Licença materinidade", "Médico", "Reunião", "Saída Almoço", "Saiu", "Sala de Reunião", "Viajando" }));
         getContentPane().add(jComboBox3);
-        jComboBox3.setBounds(611, 248, 130, 24);
+        jComboBox3.setBounds(630, 250, 130, 24);
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Entrou", "Saiu", "Não Chegou" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
@@ -90,15 +103,15 @@ public class telaEntradaSaida extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jComboBox2);
-        jComboBox2.setBounds(611, 196, 130, 24);
+        jComboBox2.setBounds(630, 200, 130, 24);
 
         jLabel6.setText("Foto");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(543, 175, 21, 15);
+        jLabel6.setBounds(570, 180, 32, 15);
 
         jLabel8.setText("Tipo");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(670, 175, 20, 15);
+        jLabel8.setBounds(690, 180, 30, 15);
 
         jButton7.setText("Avisar-me quando chegar");
         jButton7.setEnabled(false);
@@ -107,7 +120,7 @@ public class telaEntradaSaida extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Observação");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(61, 288, 60, 15);
+        jLabel5.setBounds(61, 288, 84, 15);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ausente", "Copa", "Entrada Almoço", "Escritório", "Férias", "Foi Embora", "Fora da Mesa", "Licença", "Licença materinidade", "Médico", "Não chegou", "Reunião", "Saída Almoço", "Saiu", "Sala de Reunião", "Viajando" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -120,62 +133,87 @@ public class telaEntradaSaida extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Movimento");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(68, 237, 51, 15);
+        jLabel4.setBounds(68, 237, 77, 15);
 
         jTextField1.setText("16/11/2017");
         jTextField1.setEnabled(false);
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(49, 196, 58, 19);
+        jTextField1.setBounds(49, 196, 76, 19);
 
         jLabel2.setText("Data:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(12, 198, 25, 15);
+        jLabel2.setBounds(12, 198, 39, 15);
 
         jLabel3.setText("Hora:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(119, 198, 26, 15);
+        jLabel3.setBounds(130, 200, 39, 15);
 
         jTextField2.setText("04:01");
         jTextField2.setEnabled(false);
         getContentPane().add(jTextField2);
-        jTextField2.setBounds(157, 196, 31, 19);
+        jTextField2.setBounds(170, 200, 40, 20);
 
         jLabel1.setText("Status");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(27, 175, 31, 15);
+        jLabel1.setBounds(27, 175, 47, 15);
 
-        jButton3.setText("OK");
-        jButton3.setEnabled(false);
-        getContentPane().add(jButton3);
-        jButton3.setBounds(216, 227, 100, 25);
-
-        jButton1.setText("Entrada");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(216, 197, 100, 25);
-
-        jButton5.setText("Imprimir");
-        jButton5.setEnabled(false);
-        getContentPane().add(jButton5);
-        jButton5.setBounds(216, 257, 100, 25);
-
-        jButton6.setText("Participantes");
-        jButton6.setEnabled(false);
-        getContentPane().add(jButton6);
-        jButton6.setBounds(321, 257, 100, 25);
-
-        jButton4.setText("Cancelar");
-        jButton4.setEnabled(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonOk.setText("OK");
+        jButtonOk.setEnabled(false);
+        jButtonOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButtonOkActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4);
-        jButton4.setBounds(321, 227, 100, 25);
+        getContentPane().add(jButtonOk);
+        jButtonOk.setBounds(216, 227, 100, 25);
 
-        jButton2.setText("Saída");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(321, 197, 100, 25);
+        jButtonEntrada.setText("Entrada");
+        jButtonEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEntradaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonEntrada);
+        jButtonEntrada.setBounds(216, 197, 100, 25);
+
+        jButtonImprimir.setText("Imprimir");
+        jButtonImprimir.setEnabled(false);
+        jButtonImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonImprimirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonImprimir);
+        jButtonImprimir.setBounds(216, 257, 100, 25);
+
+        jButtonParticipantes.setText("Participantes");
+        jButtonParticipantes.setEnabled(false);
+        jButtonParticipantes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonParticipantesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonParticipantes);
+        jButtonParticipantes.setBounds(321, 257, 100, 25);
+
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.setEnabled(false);
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonCancelar);
+        jButtonCancelar.setBounds(321, 227, 100, 25);
+
+        jButtonSaida.setText("Saída");
+        jButtonSaida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaidaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonSaida);
+        jButtonSaida.setBounds(321, 197, 100, 25);
 
         jTableFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -187,12 +225,22 @@ public class telaEntradaSaida extends javax.swing.JInternalFrame {
 
             }
         ));
+        jTableFuncionarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableFuncionariosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableFuncionarios);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(12, 12, 764, 163);
+        jScrollPane1.setBounds(12, 12, 790, 163);
         getContentPane().add(jTextField5);
         jTextField5.setBounds(12, 309, 198, 32);
+
+        jLabel9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel9.setText("Pesquisar:");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(440, 180, 150, 50);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -205,10 +253,146 @@ public class telaEntradaSaida extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-             public void preencherTabela(String Sql){
+        bloquearCampos();
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jTableFuncionariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableFuncionariosMouseClicked
+        // TODO add your handling code here:
+        String usuario =""+jTableFuncionarios.getValueAt(jTableFuncionarios.getSelectedRow(), 1);
+        conex.conectar();
+        conex.executaSql("select *from funcionarios where usuario='"+usuario+"'");
+        try {
+            conex.rs.first();
+            
+            if(jComboBoxPesquisa.getSelectedItem().equals("Usuário")){
+                jTextFieldPesquisar.setText(conex.rs.getString("usuario"));
+            }
+            if(jComboBoxPesquisa.getSelectedItem().equals("Ramal")){
+                jTextFieldPesquisar.setText(String.valueOf(conex.rs.getInt("ramal")));
+            }
+            if(jComboBoxPesquisa.getSelectedItem().equals("Nome")){
+                jTextFieldPesquisar.setText(conex.rs.getString("nomecompleto"));
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao selecionar os dados "+ex);
+        }
+        
+        conex.desconecta();
+    }//GEN-LAST:event_jTableFuncionariosMouseClicked
+
+    private void jComboBoxPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPesquisaActionPerformed
+        // TODO add your handling code here:        
+       mod.setPesquisa(jTextFieldPesquisar.getText());
+        mod.setTipoPesquisa((String) jComboBoxPesquisa.getSelectedItem());
+        control.buscar(mod);
+         if(jTextFieldPesquisar.getText().equals("")){
+        }else{
+             
+         if(jComboBoxPesquisa.getSelectedItem().equals("usuario")){
+            preencherTabela("select *from funcionarios where usuario like'%" + mod.getPesquisa()+ "%'");
+        }
+         
+        try{
+            
+             if(jComboBoxPesquisa.getSelectedItem().equals("ramal")){
+            preencherTabela("select *from funcionarios where ramal like'%" + mod.getPesquisa()+ "%'");
+            }
+         }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Somente numeros são aceitos para pesquisa de ramais");
+        }
+                      
+         try{
+             
+         if(jComboBoxPesquisa.getSelectedItem().equals("nome")){
+            preencherTabela("select *from funcionarios where nomeCompleto like'%" + mod.getPesquisa()+ "%'");
+        }
+         }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Somente letras são aceitas para na pesquisa de nome");
+         }
+     }         
+    }//GEN-LAST:event_jComboBoxPesquisaActionPerformed
+
+    private void jButtonEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntradaActionPerformed
+        // TODO add your handling code here:
+        desbloquearCampos();
+    }//GEN-LAST:event_jButtonEntradaActionPerformed
+
+    private void jButtonSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaidaActionPerformed
+        // TODO add your handling code here:
+        desbloquearCampos();
+    }//GEN-LAST:event_jButtonSaidaActionPerformed
+
+    private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
+        // TODO add your handling code here:
+        bloquearCampos();
+    }//GEN-LAST:event_jButtonOkActionPerformed
+
+    private void jButtonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImprimirActionPerformed
+        // TODO add your handling code here:
+        bloquearCampos();
+    }//GEN-LAST:event_jButtonImprimirActionPerformed
+
+    private void jButtonParticipantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonParticipantesActionPerformed
+        // TODO add your handling code here:
+        bloquearCampos();
+    }//GEN-LAST:event_jButtonParticipantesActionPerformed
+
+    private void jTextFieldPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarActionPerformed
+        // TODO add your handling code here:
+        mod.setPesquisa(jTextFieldPesquisar.getText());
+        mod.setTipoPesquisa((String) jComboBoxPesquisa.getSelectedItem());
+        control.buscar(mod);
+         if(jTextFieldPesquisar.getText().equals("")){
+        }else{
+             
+         if(jComboBoxPesquisa.getSelectedItem().equals("usuario")){
+            preencherTabela("select *from funcionarios where usuario like'%" + mod.getPesquisa()+ "%'");
+        }
+         
+        try{
+            
+             if(jComboBoxPesquisa.getSelectedItem().equals("ramal")){
+            preencherTabela("select *from funcionarios where ramal like'%" + mod.getPesquisa()+ "%'");
+            }
+         }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Somente numeros são aceitos para pesquisa de ramais");
+        }
+                      
+         try{
+             
+         if(jComboBoxPesquisa.getSelectedItem().equals("nome")){
+            preencherTabela("select *from funcionarios where nomeCompleto like'%" + mod.getPesquisa()+ "%'");
+        }
+         }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Somente letras são aceitas para a pesquisa de nome");
+         }
+     }         
+    }//GEN-LAST:event_jTextFieldPesquisarActionPerformed
+            
+    public void desbloquearCampos(){
+        jButtonEntrada.setEnabled(false);
+        jButtonSaida.setEnabled(false);
+        
+        jButtonCancelar.setEnabled(true);
+        jButtonImprimir.setEnabled(true);
+        jButtonOk.setEnabled(true);
+        jButtonParticipantes.setEnabled(true);
+    }
+    
+    public void bloquearCampos(){
+        jButtonEntrada.setEnabled(true);
+        jButtonSaida.setEnabled(true);
+        
+        jButtonCancelar.setEnabled(false);
+        jButtonImprimir.setEnabled(false);
+        jButtonOk.setEnabled(false);
+        jButtonParticipantes.setEnabled(false);
+    }
+   
+    public void preencherTabela(String Sql){
           ArrayList dados = new ArrayList();
           String [] colunas = new String []{"Usuario","Ramal","Nome Completo"};//ADD MOVIMENTO DPS
           conex.conectar();
@@ -239,17 +423,17 @@ public class telaEntradaSaida extends javax.swing.JInternalFrame {
              
              
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonEntrada;
+    private javax.swing.JButton jButtonImprimir;
+    private javax.swing.JButton jButtonOk;
+    private javax.swing.JButton jButtonParticipantes;
+    private javax.swing.JButton jButtonSaida;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JComboBox<String> jComboBoxPesquisa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -258,11 +442,12 @@ public class telaEntradaSaida extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableFuncionarios;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextFieldPesquisar;
     // End of variables declaration//GEN-END:variables
 }

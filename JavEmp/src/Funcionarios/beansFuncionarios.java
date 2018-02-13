@@ -19,6 +19,7 @@ public class beansFuncionarios {
     private String pesquisa;
     private int ramal;
     private String nomecompleto;
+    private String tipoPesquisa;
 
     /**
      * @return the id
@@ -78,10 +79,10 @@ public class beansFuncionarios {
     }
     // nome completo
     public String getNomeCompleto() {
-        return nomecompleto;
+        return getNomecompleto();
     }
     public void setNomeCompleto(String nomecompleto) {
-        this.nomecompleto = nomecompleto;
+        this.setNomecompleto(nomecompleto);
     }
 
     /**
@@ -96,6 +97,34 @@ public class beansFuncionarios {
      */
     public void setPesquisa(String pesquisa) {
         this.pesquisa = pesquisa;
+    }
+
+    /**
+     * @return the nomecompleto
+     */
+    public String getNomecompleto() {
+        return nomecompleto;
+    }
+
+    /**
+     * @param nomecompleto the nomecompleto to set
+     */
+    public void setNomecompleto(String nomecompleto) {
+        this.nomecompleto = nomecompleto;
+    }
+
+    /**
+     * @return the tipoPesquisa
+     */
+    public String getTipoPesquisa() {
+        return tipoPesquisa;
+    }
+
+    /**
+     * @param tipoPesquisa the tipoPesquisa to set
+     */
+    public void setTipoPesquisa(String tipoPesquisa) {
+        this.tipoPesquisa = tipoPesquisa;
     }
 
     

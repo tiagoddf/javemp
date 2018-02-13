@@ -39,6 +39,10 @@ public class carrinhoTableModel extends AbstractTableModel{
         return null;
         
     }
+    public void setValueAt(int linha, int quantidade){
+       dados.get(linha).setQtd(quantidade);        
+    }
+    
     
     public void addRow(beansCarrinho p){
         this.dados.add(p);
@@ -50,6 +54,7 @@ public class carrinhoTableModel extends AbstractTableModel{
         this.fireTableRowsDeleted(linha, linha);
     }
     
+
     public void cleanRow() {
         /*
         while(tableModel.getRowCount() > 0) {

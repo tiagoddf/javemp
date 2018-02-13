@@ -463,9 +463,13 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
         
         try {
             int estoque = 5000;
-            long quantidade = new Long(perguntaQuantidade);
+            int quantidade = new Integer(perguntaQuantidade);
              if (quantidade > 0 && quantidade < estoque) {          
+                 //TESTAR VV
+                 tableModel.setValueAt(jTable_Carrinho.getSelectedRow(), quantidade);
+                                  
                 //caso seja true (Mudar a quantidade de acordo com a quantidade selecionada
+                
                 
                 } else {
                     JOptionPane.showMessageDialog(null, "estoque menor do que a mudança solicitada");
