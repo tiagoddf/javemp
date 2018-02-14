@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 
@@ -24,6 +25,8 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
     beansProdutos modProdutos = new beansProdutos();
     daoProdutos controlProdutos = new daoProdutos();
     ConnectMYSQL conex = new ConnectMYSQL();
+    DefaultListModel MODELO;
+    int Enter = 0;
     
     
     //transformei as variaveis em arrays p criar 1 tabela e não só 1 coluna da tabela
@@ -38,7 +41,9 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
         initComponents();
         preencherTabelaProdutos("select *from produtos order by nome");
         jTable_Carrinho.setModel(tableModel);
-
+        jList.setVisible(false);
+        MODELO = new DefaultListModel();
+        jList.setModel(MODELO);
     }
 
     /**
@@ -50,6 +55,8 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        jList = new javax.swing.JList<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -60,22 +67,26 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jFormattedTextFieldQuantidade = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextFieldNome = new javax.swing.JTextField();
-        jTextFieldSaldo = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextFieldValorAtual = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        jButtonEditar = new javax.swing.JButton();
         jButtonRemover = new javax.swing.JButton();
         jButtonLimpar = new javax.swing.JButton();
-        jButtonEditar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_Carrinho = new javax.swing.JTable();
+        jTextFieldNome = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jTextFieldValorAtual = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextFieldSaldo = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
 
         setTitle("Tirar Pedido");
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
+
+        jList.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLayeredPane1.add(jList);
+        jList.setBounds(0, 0, 0, 0);
 
         jPanel2.setBorder(new javax.swing.border.MatteBorder(null));
 
@@ -138,7 +149,7 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addGap(94, 94, 94)
+                .addGap(191, 191, 191)
                 .addComponent(jLabel7)
                 .addGap(47, 47, 47))
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -148,10 +159,10 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
                         .addComponent(jTextFieldPesquisarProduto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBoxTipodoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                         .addComponent(jFormattedTextFieldQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -180,45 +191,8 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
                 .addGap(1, 1, 1))
         );
 
-        jButton5.setText("Finalizar Pedido");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
-        jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
-
-        jLabel2.setText("Nome do Cliente");
-
-        jTextFieldSaldo.setText("R$00,00");
-        jTextFieldSaldo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldSaldoActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("Saldo");
-
-        jLabel4.setText("IMG CARRINHO");
-
-        jTextFieldValorAtual.setText("R$00,00");
-
-        jLabel5.setText("Valor Atual");
-
-        jButtonRemover.setText("Remover");
-        jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRemoverActionPerformed(evt);
-            }
-        });
-
-        jButtonLimpar.setText("Limpar");
-        jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLimparActionPerformed(evt);
-            }
-        });
+        jLayeredPane1.add(jPanel2);
+        jPanel2.setBounds(12, 199, 550, 237);
 
         jButtonEditar.setText("Editar QTD");
         jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -226,6 +200,26 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
                 jButtonEditarActionPerformed(evt);
             }
         });
+        jLayeredPane1.add(jButtonEditar);
+        jButtonEditar.setBounds(240, 140, 108, 25);
+
+        jButtonRemover.setText("Remover");
+        jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverActionPerformed(evt);
+            }
+        });
+        jLayeredPane1.add(jButtonRemover);
+        jButtonRemover.setBounds(360, 140, 95, 25);
+
+        jButtonLimpar.setText("Limpar");
+        jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimparActionPerformed(evt);
+            }
+        });
+        jLayeredPane1.add(jButtonLimpar);
+        jButtonLimpar.setBounds(460, 140, 95, 25);
 
         jTable_Carrinho.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -240,101 +234,116 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
         ));
         jScrollPane3.setViewportView(jTable_Carrinho);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButtonEditar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(77, 77, 77)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextFieldValorAtual)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(jLabel3))
-                            .addComponent(jTextFieldSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldValorAtual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonRemover)
-                            .addComponent(jButtonLimpar)
-                            .addComponent(jButtonEditar)))))
-        );
+        jLayeredPane1.add(jScrollPane3);
+        jScrollPane3.setBounds(130, 50, 430, 83);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jTextFieldNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNomeActionPerformed(evt);
+            }
+        });
+        jTextFieldNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldNomeKeyReleased(evt);
+            }
+        });
+        jLayeredPane1.add(jTextFieldNome);
+        jTextFieldNome.setBounds(12, 20, 250, 30);
+
+        jLabel2.setText("Nome do Cliente");
+        jLayeredPane1.add(jLabel2);
+        jLabel2.setBounds(34, 1, 116, 15);
+
+        jLabel5.setText("Valor Atual");
+        jLayeredPane1.add(jLabel5);
+        jLabel5.setBounds(247, 1, 78, 15);
+
+        jTextFieldValorAtual.setText("R$00,00");
+        jLayeredPane1.add(jTextFieldValorAtual);
+        jTextFieldValorAtual.setBounds(272, 20, 160, 19);
+
+        jLabel3.setText("Saldo");
+        jLayeredPane1.add(jLabel3);
+        jLabel3.setBounds(462, 0, 40, 15);
+
+        jTextFieldSaldo.setText("R$00,00");
+        jTextFieldSaldo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldSaldoActionPerformed(evt);
+            }
+        });
+        jLayeredPane1.add(jTextFieldSaldo);
+        jTextFieldSaldo.setBounds(440, 20, 85, 19);
+
+        jButton5.setText("Finalizar Pedido");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jLayeredPane1.add(jButton5);
+        jButton5.setBounds(12, 442, 550, 25);
+
+        jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jScrollPane1MousePressed(evt);
+            }
+        });
+        jLayeredPane1.add(jScrollPane1);
+        jScrollPane1.setBounds(10, 50, 250, 140);
+
+        getContentPane().add(jLayeredPane1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void ListaDePesquisas(){
+        try{
+            conex.executaSql("*SELECT *FROM clientes where nome like '"+ jTextFieldNome.getText() + "%' ORDER BY nome");
+            MODELO.removeAllElements();
+            int v = 0;
+            while (conex.rs.next() & v <4) {
+                MODELO.addElement(conex.rs.getString("nome"));
+                v++;
+            }
+            if(v>=1){
+                jList.setVisible(true);
+                
+            }else{
+                jList.setVisible(false);
+            }
+            
+            ResultadoPesquisa();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Erro ao listar dados");
+        }
+    }
+    
+    public void MostraPesquisa(){
+        int Linha = jList.getSelectedIndex();
+           if(Linha >= 0 ){
+               conex.executaSql("SELECT * FROM clientes where nome like '" + "" + jTextFieldNome.getText() + "%' ORDER BY nome LIMIT" + Linha + " , 1");
+           }
+        
+    }
+    
+    public void ResultadoPesquisa(){
+        try {
+        conex.rs.first();
+        jTextFieldSaldo.setText(conex.rs.getString("saldo"));
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Erro ao mostrar saldo do cliente");
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     private void jTableProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProdutosMouseClicked
         String nome =""+jTableProdutos.getValueAt(jTableProdutos.getSelectedRow(), 1);
         conex.conectar();
@@ -422,63 +431,14 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextFieldSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSaldoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldSaldoActionPerformed
-
-    private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
-        tableModel.cleanRow();
-    }//GEN-LAST:event_jButtonLimparActionPerformed
-
-    private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
-     if(jTable_Carrinho.getSelectedRow() != -1){
-        int resposta = 0;
-        resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente remover o item da compra?");
-        if(resposta ==JOptionPane.YES_OPTION){
-            tableModel.removeRow(jTable_Carrinho.getSelectedRow());
-            }
-        }else{
-         JOptionPane.showMessageDialog(null, "Escolha o item que deseja remover da compra");
-     }
-    }//GEN-LAST:event_jButtonRemoverActionPerformed
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         int resposta = 0;
         resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja Finalizar o pedido?");
         if(resposta ==JOptionPane.YES_OPTION){
-            
+                           
         }
     }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-    /*    // TODO add your handling code here:
-    if(jTable_Carrinho.getSelectedRow() != -1){
-        int numero1 =Integer.parseInt((String) jTable1.getValueAt(x,y));
-             }*/
-    
-        String perguntaQuantidade;
-        
-        perguntaQuantidade = JOptionPane.showInputDialog(null, "Qual a quantidade?", JOptionPane.PLAIN_MESSAGE);
-        
-        try {
-            int estoque = 5000;
-            int quantidade = new Integer(perguntaQuantidade);
-             if (quantidade > 0 && quantidade < estoque) {          
-                 //TESTAR VV
-                 tableModel.setValueAt(jTable_Carrinho.getSelectedRow(), quantidade);
-                                  
-                //caso seja true (Mudar a quantidade de acordo com a quantidade selecionada
-                
-                
-                } else {
-                    JOptionPane.showMessageDialog(null, "estoque menor do que a mudança solicitada");
-            }
-             
-        } catch (NumberFormatException  exception) {
-            JOptionPane.showMessageDialog(null,"Apenas numeros são validos");
-     }    
-    }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jFormattedTextFieldQuantidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextFieldQuantidadeMouseClicked
         // TODO add your handling code here:
@@ -494,6 +454,74 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jFormattedTextFieldQuantidadeKeyPressed
 
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        /*    // TODO add your handling code here:
+        if(jTable_Carrinho.getSelectedRow() != -1){
+            int numero1 =Integer.parseInt((String) jTable1.getValueAt(x,y));
+        }*/
+
+        String perguntaQuantidade;
+
+        perguntaQuantidade = JOptionPane.showInputDialog(null, "Qual a quantidade?", JOptionPane.PLAIN_MESSAGE);
+
+        try {
+            int estoque = 5000;
+            int quantidade = new Integer(perguntaQuantidade);
+            if (quantidade > 0 && quantidade < estoque) {
+                //TESTAR VV
+                tableModel.setQuantidade(jTable_Carrinho.getSelectedRow(), quantidade);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "estoque menor do que a mudança solicitada");
+            }
+
+        } catch (NumberFormatException  exception) {
+            JOptionPane.showMessageDialog(null,"Apenas numeros são validos");
+        }
+    }//GEN-LAST:event_jButtonEditarActionPerformed
+
+    private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
+        tableModel.cleanRow();
+    }//GEN-LAST:event_jButtonLimparActionPerformed
+
+    private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
+        if(jTable_Carrinho.getSelectedRow() != -1){
+            int resposta = 0;
+            resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente remover o item da compra?");
+            if(resposta ==JOptionPane.YES_OPTION){
+                tableModel.removeRow(jTable_Carrinho.getSelectedRow());
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Escolha o item que deseja remover da compra");
+        }
+    }//GEN-LAST:event_jButtonRemoverActionPerformed
+
+    private void jTextFieldSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSaldoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldSaldoActionPerformed
+
+    private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
+        // TODO add your handling code here:
+        jList.setVisible(false);
+        Enter = 1;
+        
+    }//GEN-LAST:event_jTextFieldNomeActionPerformed
+
+    private void jTextFieldNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomeKeyReleased
+        // TODO add your handling code here:
+        if(Enter == 0){
+            ListaDePesquisas();
+        }else{ 
+            Enter = 0;
+        }
+    }//GEN-LAST:event_jTextFieldNomeKeyReleased
+
+    private void jScrollPane1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MousePressed
+        // TODO add your handling code here:
+        MostraPesquisa();
+        jList.setVisible(false);        
+    }//GEN-LAST:event_jScrollPane1MousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -506,12 +534,13 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JList<String> jList;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTableProdutos;

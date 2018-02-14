@@ -39,7 +39,7 @@ public class carrinhoTableModel extends AbstractTableModel{
         return null;
         
     }
-    public void setValueAt(int linha, int quantidade){
+    public void setQuantidade(int linha, int quantidade){
        dados.get(linha).setQtd(quantidade);        
     }
     
