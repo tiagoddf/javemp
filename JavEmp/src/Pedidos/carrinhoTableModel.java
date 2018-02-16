@@ -39,10 +39,17 @@ public class carrinhoTableModel extends AbstractTableModel{
         return null;
         
     }
-    public void setQuantidade(int linha, int quantidade){
-       dados.get(linha).setQtd(quantidade);        
+    
+    public void getValor(int linha){
+        dados.get(linha).getValor();
     }
     
+    
+    public void setQuantidade(int linha, int quantidade){
+       double valor = dados.get(linha).getValor() / dados.get(linha).getQtd();
+       dados.get(linha).setQtd(quantidade);  
+       dados.get(linha).setValor(dados.get(linha).getQtd() * valor);
+    }
     
     public void addRow(beansCarrinho p){
         this.dados.add(p);

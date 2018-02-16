@@ -345,6 +345,7 @@ public class telaHome extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
             telaTirarPedido gerenciarPedido = new telaTirarPedido();
+            gerenciarPedido.setMaximizable(true);
             gerenciarPedido.setVisible(true);
             jDesktopPane1.add(gerenciarPedido);
             jTabbedPane1.addTab("Tirar Pedido", gerenciarPedido);

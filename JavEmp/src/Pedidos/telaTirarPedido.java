@@ -9,6 +9,7 @@ import DB.ConnectMYSQL;
 import Funcionarios.modeloTabela;
 import Produtos.beansProdutos;
 import Produtos.daoProdutos;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -78,6 +79,7 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
         jButtonEditar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_Carrinho = new javax.swing.JTable();
+        jLabelNomeCliente = new javax.swing.JLabel();
 
         setTitle("Tirar Pedido");
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
@@ -122,7 +124,7 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
         });
 
         jFormattedTextFieldQuantidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        jFormattedTextFieldQuantidade.setText("1");
+        jFormattedTextFieldQuantidade.setText("Única");
         jFormattedTextFieldQuantidade.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextFieldQuantidadeMouseClicked(evt);
@@ -156,7 +158,7 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane2)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
                         .addComponent(jFormattedTextFieldQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -186,7 +188,7 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
         );
 
         jLayeredPane1.add(jPanel2);
-        jPanel2.setBounds(12, 199, 560, 237);
+        jPanel2.setBounds(12, 199, 660, 237);
 
         jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -195,6 +197,11 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
         });
 
         jList.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList);
 
         jLayeredPane1.add(jScrollPane1);
@@ -224,6 +231,9 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
             }
         });
         jTextFieldNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldNomeKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextFieldNomeKeyReleased(evt);
             }
@@ -237,24 +247,25 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Valor Atual");
         jLayeredPane1.add(jLabel5);
-        jLabel5.setBounds(247, 1, 75, 15);
+        jLabel5.setBounds(560, 0, 75, 15);
 
         jTextFieldValorAtual.setText("R$00,00");
         jLayeredPane1.add(jTextFieldValorAtual);
-        jTextFieldValorAtual.setBounds(272, 20, 160, 30);
+        jTextFieldValorAtual.setBounds(560, 20, 110, 30);
 
         jLabel3.setText("Saldo");
         jLayeredPane1.add(jLabel3);
-        jLabel3.setBounds(462, 0, 38, 15);
+        jLabel3.setBounds(480, 0, 38, 15);
 
         jTextFieldSaldo.setText("R$00,00");
+        jTextFieldSaldo.setEnabled(false);
         jTextFieldSaldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldSaldoActionPerformed(evt);
             }
         });
         jLayeredPane1.add(jTextFieldSaldo);
-        jTextFieldSaldo.setBounds(440, 20, 85, 30);
+        jTextFieldSaldo.setBounds(460, 20, 85, 30);
 
         jButton5.setText("Finalizar Pedido");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -263,7 +274,7 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
             }
         });
         jLayeredPane1.add(jButton5);
-        jButton5.setBounds(12, 442, 560, 25);
+        jButton5.setBounds(12, 442, 660, 25);
 
         jButtonEditar.setText("Editar QTD");
         jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -289,7 +300,11 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
         jScrollPane3.setViewportView(jTable_Carrinho);
 
         jLayeredPane1.add(jScrollPane3);
-        jScrollPane3.setBounds(130, 50, 440, 83);
+        jScrollPane3.setBounds(130, 50, 540, 83);
+
+        jLabelNomeCliente.setText("Nome do cliente");
+        jLayeredPane1.add(jLabelNomeCliente);
+        jLabelNomeCliente.setBounds(280, 30, 170, 15);
 
         getContentPane().add(jLayeredPane1);
 
@@ -334,12 +349,21 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
         try {
             conex.conectar();
         conex.rs.first();
-        jTextFieldSaldo.setText(conex.rs.getString("saldo"));
+        jTextFieldSaldo.setText(conex.rs.getString("credito"));
+        jLabelNomeCliente.setText(conex.rs.getString("nome"));
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Erro ao mostrar saldo do cliente");
+            JOptionPane.showMessageDialog(null, "Nome de cliente inexistente");
         }
         conex.desconecta();
     }    
+    
+    private String CalculaTotal(){
+        Double valorTotal = 0.0;
+         for(int i = 0; i < jTable_Carrinho.getRowCount(); i++){
+           valorTotal  += Double.parseDouble(jTable_Carrinho.getValueAt(i, 2).toString());
+      }
+         return valorTotal.toString();
+    }
     private void jTableProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProdutosMouseClicked
         String nome =""+jTableProdutos.getValueAt(jTableProdutos.getSelectedRow(), 1);
         conex.conectar();
@@ -419,16 +443,14 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
             if(jFormattedTextFieldQuantidade.getText().equals("1")){
                 quantidadeProduto = 1;  
                 preencherTabelaCarrinho();
-                jTableProdutos.clearSelection();
-                jTable_Carrinho.clearSelection();
             }else{
                 quantidadeProduto = Integer.parseInt(jFormattedTextFieldQuantidade.getText());
                 valorProduto = valorProduto * quantidadeProduto;
                 preencherTabelaCarrinho();
-                jTableProdutos.clearSelection();
-                jTable_Carrinho.clearSelection();
-
             }
+            jTextFieldValorAtual.setText(CalculaTotal());
+            jTableProdutos.clearSelection();
+            jTable_Carrinho.clearSelection();
             jFormattedTextFieldQuantidade.setText("1");
         }
         
@@ -439,20 +461,20 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
         int resposta = 0;
         resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja Finalizar o pedido?");
         if(resposta ==JOptionPane.YES_OPTION){
-                           
-        }
+           jTextFieldValorAtual.setText(CalculaTotal());
+      }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jFormattedTextFieldQuantidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextFieldQuantidadeMouseClicked
         // TODO add your handling code here:
-        if(jFormattedTextFieldQuantidade.getText().equals("1")){
+        if(jFormattedTextFieldQuantidade.getText().equals("Única")){
             jFormattedTextFieldQuantidade.setText("");
         }
     }//GEN-LAST:event_jFormattedTextFieldQuantidadeMouseClicked
 
     private void jFormattedTextFieldQuantidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextFieldQuantidadeKeyPressed
         // TODO add your handling code here:
-         if(jFormattedTextFieldQuantidade.getText().equals("1")){
+         if(jFormattedTextFieldQuantidade.getText().equals("Única")){
             jFormattedTextFieldQuantidade.setText("");
         }
     }//GEN-LAST:event_jFormattedTextFieldQuantidadeKeyPressed
@@ -473,6 +495,10 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
             if (quantidade > 0 && quantidade < estoque) {
                 //TESTAR VV
                 tableModel.setQuantidade(jTable_Carrinho.getSelectedRow(), quantidade);
+                
+                
+                //valorProduto = valorProduto * quantidadeProduto;
+                jTextFieldValorAtual.setText(CalculaTotal());
                 jTable_Carrinho.clearSelection();
                 jTableProdutos.clearSelection();
 
@@ -498,7 +524,7 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
                 tableModel.removeRow(jTable_Carrinho.getSelectedRow());
                 jTable_Carrinho.clearSelection();
                 jTableProdutos.clearSelection();
-                
+                jTextFieldValorAtual.setText(CalculaTotal());            
             }
         }else{
             JOptionPane.showMessageDialog(null, "Escolha o item que deseja remover da compra");
@@ -530,6 +556,33 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
         jScrollPane1.setVisible(false);        
     }//GEN-LAST:event_jScrollPane1MousePressed
 
+    private void jListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListMouseClicked
+        // TODO add your handling code here:
+        
+        
+        
+        String nomeLista =""+jList.getSelectedValue();
+        conex.conectar();
+        conex.executaSql("select *from clientes where nome='"+nomeLista+"'");
+        try {
+
+            conex.rs.first(); 
+            jTextFieldSaldo.setText(conex.rs.getString("credito"));
+            jLabelNomeCliente.setText(conex.rs.getString("nome"));
+            jScrollPane1.setVisible(false);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao selecionar os dados "+ex);
+        }
+        
+        conex.desconecta();
+    }//GEN-LAST:event_jListMouseClicked
+
+    private void jTextFieldNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomeKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){   
+            jScrollPane1.setVisible(false);
+     }    
+    }//GEN-LAST:event_jTextFieldNomeKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -545,6 +598,7 @@ public class telaTirarPedido extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabelNomeCliente;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JList<String> jList;
     private javax.swing.JPanel jPanel2;

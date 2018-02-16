@@ -419,6 +419,10 @@ public class telaGerenciarFuncionarios extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+
+if(jTextFieldNome.getText().equals("Usuário") || jTextFieldSenha.getText().equals("senha")){
+    JOptionPane.showMessageDialog(null, "Por medidas de segurança usúario nao pode ser igual à Usuário e senha não pode ser igual à senha");
+}else{
         if(flag ==1){
             if(jTextFieldSenha.getText().equals(jTextFieldSenha2.getText())){
                 mod.setUsuario(jTextFieldNome.getText());
@@ -447,7 +451,7 @@ public class telaGerenciarFuncionarios extends javax.swing.JInternalFrame {
             limparCampos();
             desabilitarBotoes();
             preencherTabela("select *from funcionarios order by usuario");
-
+            }
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
